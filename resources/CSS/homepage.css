@@ -1,0 +1,30 @@
+/*  搜索框开始  */
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+.search-box {
+    width: 30%;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    display: flex;
+}
+.search-input {
+    flex-grow: 1;
+    border: none;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.search-button {
+    background-color: #2ba6df;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+/*  搜索框结束  */
+/* 换页框开始  */
