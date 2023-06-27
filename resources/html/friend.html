@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <title>好友列表以及聊天</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">     
-        <link rel="stylesheet" href="./layui-v2.8.4/layui/css/layui.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     </head>
     <body>
         <div class="layui-layout layui-layout-admin">
@@ -90,7 +90,7 @@
                     <div class="layui-card-body">
                     
                     <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
-                      <a href="./网页聊天.html">
+                      <a th:href="@{chat}">
                         <!--以下img表示好友头像，要接入库中由库输入，同时friend_name均为好友名称，也需要由库输入-->
                         <img src="https://unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img"><span id="friend1_name"></span>
                         <br><br>
@@ -118,6 +118,7 @@
                   <br><br>
                 </div>
               </div>
+              <script src="layui/layui.js"></script>
               <script>
                 layui.use(function(){
                   var $ = layui.$;
