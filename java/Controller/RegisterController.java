@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.dto.UserRegisterDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,17 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class RegisterController {
 
-    /**
-     * ajax异步请求后台接口
-     *
-     * @param registerDto
-     * @return
-     */
-    @ResponseBody
-    @PostMapping("register")
-    public String login(@RequestBody UserRegisterDto registerDto, HttpServletRequest request) {
-        System.out.println("用户填写的登录信息:" + JSONObject.toJSONString(registerDto));
-        return "redirect:login";
+    @GetMapping("register")
+    public String register() {
+        return "register";
     }
 
+    @PostMapping("submitRegister")
+    public String submitRegister(UserRegisterDto userRegisterDto) {
+        System.out.println("password:" + userRegisterDto.getRegister_password() + " confirmPassword:" + userRegisterDto.getRegister_confirmPassword() + " nickname:" + userRegisterDto.getRegister_nickname());
+        return "redirect:login";
+    }
 }
