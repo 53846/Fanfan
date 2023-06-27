@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+		<title>饭饭之交登录界面</title>
+		<link rel="stylesheet" href="./layui-v2.8.4/layui/css/layui.css">
+    <style>
+      body {
+          background:url(./images/background.jpg) no-repeat;
+          /*这部分是实现背景功能的代码，上面url后括号里面的东西是你图片的地址*/
+          background-size:cover;
+      }
+  </style>
+
+      </head>
+    <body>
+        
+        <script src="./layui-v2.8.4/layui/layui.js"></script>
+        <style>
+        .demo-login-container{width: 320px; margin: 50px auto 0;margin-right: 150px;}
+    .demo-login-other .layui-icon{position: relative; display: inline-block; margin: 0 2px; top: 2px; font-size: 26px;}
+        </style>
+        
+    <form class="layui-form">
+      <div class="demo-login-container">
+        <img src="./images//lastlogo.png" width="400" height="150"style="float:right;margin:30px;margin-right:-40px"; />
+        <!--上面这个img之前不在这个位置，现在放在这个位置并改了里面的参数是用来把它放在登陆界面上方，我之前把它放在左上方会很突兀-->
+        <div class="layui-form-item">
+          <div class="layui-input-wrap">
+            <div class="layui-input-prefix">
+              <i class="layui-icon layui-icon-username"></i>
+            </div>
+            <input type="text" name="login_username" value="" lay-verify="required" placeholder="用户名" lay-reqtext="请填写用户名" autocomplete="off" class="layui-input" lay-affix="clear">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-wrap">
+            <div class="layui-input-prefix">
+              <i class="layui-icon layui-icon-password"></i>
+            </div>
+            <input type="password" name="login_password" value="" lay-verify="required" placeholder="密   码" lay-reqtext="请填写密码" autocomplete="off" class="layui-input" lay-affix="eye">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-row">
+            <div class="layui-col-xs7">
+              <div class="layui-input-wrap">
+                <div class="layui-input-prefix">
+                  <i class="layui-icon layui-icon-vercode"></i>
+                </div>
+                <input type="text" name="login_captcha" value="" lay-verify="required" placeholder="验证码" lay-reqtext="请填写验证码" autocomplete="off" class="layui-input" lay-affix="clear">
+              </div>
+            </div>
+            <div class="layui-col-xs5">
+              <div style="margin-left: 10px;">
+                <img src="https://www.oschina.net/action/user/captcha" onclick="this.src='https://www.oschina.net/action/user/captcha?t='+ new Date().getTime();">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="demo-login">登录</button>
+        </div>
+        <div class="layui-form-item demo-login-other">
+          <a href="./注册.html" style="color:rgb(255, 208, 0);">注册帐号</a></span>
+          <!--这里改了字体颜色，因为在有了背景后不改颜色字体看不清-->
+        </div>
+      </div>
+    </form>
+    <script>
+layui.use(function(){
+  var form = layui.form;
+  var layer = layui.layer;
+  
+
+  // 提交事件
+  form.on('submit(demo-login)', function(data){
+    var field = data.field; // 获取表单字段值
+    // 成功便显示
+    layer.alert("登陆成功！");
+    // 此处可执行 Ajax 等操作
+    return false; // 阻止默认 form 跳转
+  });
+});
+    </script>
+    </body>
+</html>
