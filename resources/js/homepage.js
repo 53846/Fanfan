@@ -1,17 +1,25 @@
-  //首页翻页
+  //轮播
 layui.use(function(){
-    var laypage = layui.laypage;
-    // 完整显示
-    laypage.render({
-      elem: 'demo-laypage-all', // 元素 id
-      count: 100, // 数据总数
-      layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'], // 功能布局
-      jump: function(obj){
-        console.log(obj);
-      }
-    });
+  var carousel = layui.carousel;
+  // 渲染 - 常规轮播
+  carousel.render({
+    elem: '#ID-carousel-demo-1',
+    width: 'auto'
   });
-    //首页左方
+  
+  // 渲染 - 设置时间间隔、动画类型、宽高度等属性
+  carousel.render({
+    elem: '#ID-carousel-demo-2',
+    interval: 1800,
+    anim: 'fade',
+    width: 'auto',
+    height: '120px'
+  });
+});
+ 
+ 
+ 
+ //首页左方
 layui.use(['element', 'layer', 'util'], function(){
     var element = layui.element;
     var layer = layui.layer;
@@ -38,70 +46,55 @@ layui.use(['element', 'layer', 'util'], function(){
   }
 
   
-// 假设有一个包含所有图片路径的数组
-var imageArray = [/* 图片路径数组 */];
-var pageSize = 5; // 每页显示的图片数量
-var currentPage = 1; // 当前页码
+  layui.use(['laypage'], function() {
+    var laypage = layui.laypage;
 
-// 获取图片容器和按钮容器的引用
-var imageContainer = document.getElementById('imageContainer');
-var paginationContainer = document.getElementById('paginationContainer');
+    layui.use(function(){
+      var laypage = layui.laypage;
+      // 完整显示
+      laypage.render({
+        elem: 'demo-laypage-all', // 元素 id
+        count: 100, // 数据总数
+        layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'], // 功能布局
+        jump: function(obj){
+          console.log(obj);
+        }
+      });
+    });
+  });
 
-// 初始化页面
-renderPage(currentPage);
-
-// 渲染当前页的图片和按钮
-function renderPage(page) {
-  // 清空图片容器中的内容
-  imageContainer.innerHTML = '';
-  
-  // 计算当前页需要显示的图片的起始索引和结束索引
-  var startIndex = (page - 1) * pageSize;
-  var endIndex = Math.min(startIndex + pageSize, imageArray.length);
-  
-  // 遍历当前页的图片并将其添加到图片容器中
-  for (var i = startIndex; i < endIndex; i++) {
-    var imageSrc = imageArray[i];
+    //点赞设计开始
+    var isLiked = false;
+    var likeButton = document.getElementById('likeButton');
+    var likeCount = document.getElementById('likeCount');
+    var lkcount = 0;
     
-    // 创建图片元素并设置图片路径
-    var img = document.createElement('img');
-    img.src = imageSrc;
-    
-    // 将图片元素添加到图片容器中
-    imageContainer.appendChild(img);
-  }
-  
-  // 渲染分页按钮
-  renderPagination(page);
-}
-
-// 渲染分页按钮
-function renderPagination(currentPage) {
-  // 清空按钮容器中的内容
-  paginationContainer.innerHTML = '';
-  
-  // 计算总页数
-  var pageCount = Math.ceil(imageArray.length / pageSize);
-  
-  // 创建按钮并添加到按钮容器中
-  for (var i = 1; i <= pageCount; i++) {
-    var button = document.createElement('button');
-    button.textContent = i;
-    button.value = i;
-    
-    // 设置当前页按钮的样式
-    if (i === currentPage) {
-      button.classList.add('active');
+    function toggleLike() {
+      if (isLiked) {
+        unlike();
+      } else {
+        like();
+      }
     }
     
-    // 绑定按钮的点击事件
-    button.addEventListener('click', function() {
-      var page = parseInt(this.value);
-      currentPage = page;
-      renderPage(currentPage);
-    });
+    function like() {
+      isLiked = true;
+      likeButton.innerHTML = '已赞';
+      likeButton.classList.add('liked');
+      lkcount++;
+      updateLikeCount();
+    }
     
-    // 将按钮添加到按钮容器中
-    paginationContainer.appendChild(button);
-  }
-}
+    function unlike() {
+      isLiked = false;
+      likeButton.innerHTML = '点赞';
+      likeButton.classList.remove('liked');
+      lkcount--;
+      updateLikeCount();
+    }
+    
+    function updateLikeCount() {
+      likeCount.innerHTML = lkcount;
+    }
+  //点赞设计结束
+
