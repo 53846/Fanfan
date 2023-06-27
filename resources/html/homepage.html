@@ -79,7 +79,7 @@
           <dd><a href="javascript:;"><img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a></dd>
           <dd><a href="javascript:;"><img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a></dd>
           <dd><a href="javascript:;"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a></dd>
-          <dd><a href="javascript:;"><img src="picture/home/注销.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
+          <dd><a th:href="@{login}"><img src="picture/home/注销.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
         </dl>
       </li>
     </ul>
@@ -97,7 +97,7 @@
             <dd><a href="javascript:;"><img src="picture/home/附近.png" class="layui-nav-img" style="width: 20px;height: 20px;">附近</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="javascript:;"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>
+        <li class="layui-nav-item"><a th:href="@{friend}"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>
         <li class="layui-nav-item ">
           <a href="javascript:;"><img src="picture/home/活动.png" class="layui-nav-img">活动</a>
           <dl class="layui-nav-child">
@@ -141,24 +141,24 @@
               用户名
           </a> 
           </div>
-          <div class="layui-card-body" >
-            <a href="javascript:;" layui-layout-right>
-              <div class="layui-carousel" id="ID-carousel-demo-1">
-                <div carousel-item>
-                  <div><img src="picture/home/美食1.png" class="layui-nav-img" style="width: 50%; height: 100%;"></div>
-                  <div><img src="picture/home/美食2.png" class="layui-nav-img" style="width: 50%; height: 100%;"></div>
-                  <div><img src="picture/home/美食3.png" class="layui-nav-img" style="width: 50%; height: 100%;"></div>
-                  <div><img src="picture/home/美食4.png" class="layui-nav-img" style="width: 50%; height: 100%;"></div>
-                  <div><img src="picture/home/美食5.png" class="layui-nav-img" style="width: 50%; height: 100%;"></div>
-                </div>
-              </div> 
-              <div class="indented">
-                <p> 我强烈推荐一家名叫"食之乐"的饭馆，它是我最喜欢的餐厅之一。</p>
-                  <p>这家饭馆提供了一系列令人垂涎欲滴的菜肴，从传统的本地美食到国际化的烹饪风格，满足了各种口味的需求。
-                饭馆内部装饰典雅，环境舒适宜人，让人感觉宾至如归。员工们非常友好和专业，总是笑容满面并提供高水准的服务。</p>
-                <p>无论是家庭聚餐、朋友聚会还是浪漫约会，这里都是一个理想的选择。餐馆还提供预订服务，确保你能享受到完美的用餐体验。
-                无论你是寻找美食的探险者还是追求舌尖上的满足，"食之乐"饭馆绝对是不容错过的好去处。</p>
-               </div> 
+         <div class="layui-card-body" >
+            <a th:href="@{content}" layui-layout-right>    <!-- 跳转到详情页  -->
+              <p class="homepage-titile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                我强烈推荐一家名叫"食之乐"的饭馆。</p>
+              <br>
+              <div class="ellipsis">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                我强烈推荐一家名叫"食之乐"的饭馆，它是我最喜欢的餐厅之一。
+               这家饭馆提供了一系列令人垂涎欲滴的菜肴，从传统的本地美食到国际化的烹饪风格，满足了各种口味的需求。
+               饭馆内部装饰典雅，环境舒适宜人，让人感觉宾至如归。员工们非常友好和专业，总是笑容满面并提供高水准的服务。
+               无论是家庭聚餐、朋友聚会还是浪漫约会，这里都是一个理想的选择。餐馆还提供预订服务，确保你能享受到完美的用餐体验。
+               无论你是寻找美食的探险者还是追求舌尖上的满足，"食之乐"饭馆绝对是不容错过的好去处。
+             </div> 
+             <br>
+             <div class="image-container">
+              <img src="picture/home/美食1.jpg" alt="Image 1">
+              <img src="picture/home/美食2.jpg" alt="Image 2">
+              <img src="picture/home/美食3.jpg" alt="Image 3">
+            </div>
             </a>
             <br>  
             <div class="like-container">
