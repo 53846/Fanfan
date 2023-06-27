@@ -27,4 +27,34 @@
     cursor: pointer;
 }
 /*  搜索框结束  */
-/* 换页框开始  */
+
+/* 文本首行缩进开始 */
+.indented p {
+    text-indent: 2em; /* 设置缩进量，这里使用 2em 作为示例 */
+  }
+/* 文本首行缩进结束 */
+
+/* 点赞设计开始 */
+.like-button {
+    display: inline-block;
+    padding: 5px 20px;
+    font-size: 16px;
+    background-color: #eaeaea;
+    border: none;
+    border-radius: 23px;
+    cursor: pointer;
+    transition: background-color 1s;
+  }
+  .like-button:hover {
+    background-color: #d5d5d5;
+  }
+  .like-button.liked {
+    background-color: #fb1d1d;
+    color: #ffffff;
+  }
+  .like-count {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777777;
+  }
+  /* 点赞设计结束 */
