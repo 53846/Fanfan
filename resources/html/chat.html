@@ -4,17 +4,31 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>聊天</title>
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
 		
     </head>
  
     <body>
+
         <div class="container">
             <div class="leftSide">
                 <!--header-->
+<!--                <div class="layui-btn-container">-->
+<!--                    <a th:href="@{friend}" class="layui-icon layui-icon-left">返回好友列表</a>-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="layui-btn-container">-->
+<!--                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">-->
+<!--                        <a th:href="@{friend}"> 返回好友列表</a>-->
+<!--                    </button>-->
+<!--                </div>-->
                 <div class="header">
-                    <div class="userimg">
-                        <img src="picture/chat/快餐.png" class="cover">
+                    <div class="layui-btn-container">
+                        <a th:href="@{friend}" class="layui-icon layui-icon-left">返回好友列表</a>
                     </div>
+<!--                    <div class="userimg">-->
+<!--&lt;!&ndash;                        <img src="picture/chat/快餐.png" class="cover">&ndash;&gt;-->
+<!--                        <dd><a th:href="@{friend}"><img src="picture/chat/快餐.png" class="layui-nav-img"></a></dd>-->
+<!--                    </div>-->
                     <ul class="nav_icons">
                         <li><img src="picture/chat/消息.png"></li>
                         <li><img src="picture/chat/更多.png"></li>
