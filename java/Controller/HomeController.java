@@ -31,6 +31,16 @@ public class HomeController {
         return "register";
     }
 
+    @GetMapping("friend")
+    public String friend() {
+        return "friend";
+    }
+
+    @GetMapping("chat")
+    public String chat() {
+        return "chat";
+    }
+
     @GetMapping("privacyPolicy")
     public String privacyPolicy() {
         return "privacyPolicy";
