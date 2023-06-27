@@ -1,8 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>聊天</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
 		
     </head>
  
@@ -12,25 +13,25 @@
                 <!--header-->
                 <div class="header">
                     <div class="userimg">
-                        <img src="./images/快餐.png" class="cover">
+                        <img src="picture/chat/快餐.png" class="cover">
                     </div>
                     <ul class="nav_icons">
-                        <li><img src="./images/消息.png"></li>
-                        <li><img src="./images/更多.png"></li>
+                        <li><img src="picture/chat/消息.png"></li>
+                        <li><img src="picture/chat/更多.png"></li>
                     </ul>
                 </div>
                 <!--search-->
                 <div class="search_chat">
                     <div>
                         <input type="text" placeholder="搜索...">
-                        <img src="./images/搜索.png">
+                        <img src="picture/chat/搜索.png">
                     </div>
                 </div>
                 <!--ChatList-->
                 <div class="chatlist">
                     <div class="block active">
                         <div class="imgbx">
-                            <img src="./images/美食.png" class="cover">
+                            <img src="picture/chat/美食.png" class="cover">
                         </div>
                         <div class="details">
                             <div class="listHead">
@@ -47,7 +48,7 @@
                 <div class="chatlist">
                     <div class="block unread">
                         <div class="imgbx">
-                            <img src="./images/美食_披萨.png" class="cover">
+                            <img src="picture/chat/美食_披萨.png" class="cover">
                         </div>
                         <div class="details">
                             <div class="listHead">
@@ -65,7 +66,7 @@
                 <div class="chatlist">
                     <div class="block">
                         <div class="imgbx">
-                            <img src="./images/可乐.png" class="cover">
+                            <img src="picture/chat/可乐.png" class="cover">
                         </div>
                         <div class="details">
                             <div class="listHead">
@@ -87,13 +88,13 @@
                 <div class="header">
                     <div class="imgText">
                         <div class="userimg">
-                            <img src="./images/美食.png" class="cover">
+                            <img src="picture/chat/美食.png" class="cover">
                         </div>
                         <h4>汉堡<br><span>在线</span></h4>
                     </div>
                     <ul class="nav_icons">
-                        <li><img src="./images/消息.png"></li>
-                        <li><img src="./images/更多.png"></li>
+                        <li><img src="picture/chat/消息.png"></li>
+                        <li><img src="picture/chat/更多.png"></li>
                     </ul>
                 </div>
                 <!--chatbox-->
@@ -126,6 +127,8 @@
             </div>
             
         </div>
+
+        <script src="@{layui/layui.js}"></script>
     </body>
 	
 </html>
