@@ -19,4 +19,12 @@ public class HomeController {
         return "homepage";
     }
 
+//    @PostMapping("submitLogin")
+//    public String submitLogin(UserLoginDto userLoginDto, HttpServletRequest request) {
+//        UserDto user = new UserDto();
+//        user.setUsername(userLoginDto.getLogin_username());
+//        System.out.println("username: " + userLoginDto.getLogin_username() + " password: " + userLoginDto.getLogin_password() + "captcha: " + userLoginDto.getLogin_captcha());
+//        request.getSession().setAttribute("user", user);
+//        return "redirect:homepage";
+//    }
 }
