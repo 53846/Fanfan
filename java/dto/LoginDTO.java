@@ -5,12 +5,6 @@ public class LoginDTO {
     private String login_password;
     private String login_captcha;
 
-    public LoginDTO(String login_username, String login_password, String login_captcha) {
-        this.login_username = login_username;
-        this.login_password = login_password;
-        this.login_captcha = login_captcha;
-    }
-
     public String getLogin_username() {
         return login_username;
     }
