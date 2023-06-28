@@ -1,11 +1,11 @@
 package com.example.demo.interceptor;
 
 import com.example.demo.dto.UserDto;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class MyHandlerInterceptor implements HandlerInterceptor {
     @Override
@@ -22,7 +22,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
             System.out.println("出现系统异常，异常信息如下:\n" + e.getLocalizedMessage());
         }
         System.out.println("用户还未登录，请先登录系统...");
-        response.sendRedirect(request.getContextPath() + "/IndexLogin");
+        response.sendRedirect(request.getContextPath() + "/login");
         return false;
     }
 
