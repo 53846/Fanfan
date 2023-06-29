@@ -78,7 +78,7 @@
         <dl class="layui-nav-child">
           <dd><a href="javascript:;"><img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a></dd>
           <dd><a href="javascript:;"><img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a></dd>
-          <dd><a href="javascript:;"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a></dd>
+          <dd><a th:href="@{/userModify(userId=${session.user.id})}"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">修改信息</a></dd>
           <dd><a th:href="@{login}"><img src="picture/home/注销.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
         </dl>
       </li>
