@@ -1,31 +1,40 @@
 package com.example.demo.dto;
 
 public class UserRegisterDto {
-    private String register_password;
-    private String register_confirmPassword;
-    private String register_nickname;
+    private String userName;
+    private String password;
+    private String phoneNum;
+    private String nickName;
 
-    public String getRegister_password() {
-        return register_password;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setRegister_password(String register_password) {
-        this.register_password = register_password;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getRegister_confirmPassword() {
-        return register_confirmPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRegister_confirmPassword(String register_confirmPassword) {
-        this.register_confirmPassword = register_confirmPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getRegister_nickname() {
-        return register_nickname;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setRegister_nickname(String register_nickname) {
-        this.register_nickname = register_nickname;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }
