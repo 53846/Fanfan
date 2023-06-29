@@ -16,9 +16,9 @@ public class RegisterController {
         return "register";
     }
 
-    @PostMapping("submitRegister")
-    public String submitRegister(UserRegisterDto userRegisterDto) {
-        System.out.println("password:" + userRegisterDto.getRegister_password() + " confirmPassword:" + userRegisterDto.getRegister_confirmPassword() + " nickname:" + userRegisterDto.getRegister_nickname());
-        return "redirect:login";
-    }
+//    @PostMapping("submitRegister")
+//    public String submitRegister(UserRegisterDto userRegisterDto) {
+//        System.out.println("password:" + userRegisterDto.getRegister_password() + " confirmPassword:" + userRegisterDto.getRegister_confirmPassword() + " nickname:" + userRegisterDto.getRegister_nickname());
+//        return "redirect:login";
+//    }
 }

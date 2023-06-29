@@ -48,6 +48,7 @@ public class LoginController {
         }
 
         UserDto user = new UserDto();
+        user.setId(userEntity.getId());
         user.setUsername(loginDTO.getLogin_username());
         httpSession.setAttribute("user", user);
         return "homepage";
