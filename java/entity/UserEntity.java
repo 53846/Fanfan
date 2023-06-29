@@ -1,18 +1,26 @@
 package com.example.demo.entity;
 
 public class UserEntity {
-    private int id;
+    private Integer id;
     private String userName;
     private String password;
-    private String sex;
+    private String phoneNum;
     private String nickName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     public String getUserName() {
@@ -31,13 +39,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public String getNickName() {
         return nickName;
