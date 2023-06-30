@@ -160,11 +160,14 @@
               <img src="picture/home/美食3.jpg" alt="Image 3">
             </div>
             </a>
-            <br>  
-            <div class="like-container">
-              <button id="likeButton" class="like-button" onclick="toggleLike()">点赞</button>
-              <p class="like-count">点赞数：<span id="likeCount">0</span></p>
-            </div>
+            <br>
+             <div class="homepage-like-container">
+                 <button id="likeButton" class="homepage-like-button" onclick="toggleLike()">点赞</button>
+                 <a href="详情页的URL">
+                     <button class="homepage-comment-button">评论</button>
+                 </a>
+                 <p class="like-count">点赞数：<span id="likeCount">0</span></p>
+             </div>
           </div>
         </div>
         <div class="layui-card layui-panel">
@@ -245,7 +248,21 @@
         <div id="demo-laypage-all">
 
         </div>
-        
+        <!--  右侧开始   -->
+        <div class="homepage-container">
+            <ul>
+                <li><a href="hot1.html">
+                    <img src="picture/home/关于我们.png" class="layui-nav-img" style="width: 25px;height: 25px;">
+                    关于我们</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+                <li><a href="hot2.html">
+                    <img src="picture/home/联系我们.png" class="layui-nav-img" style="width: 20px;height: 20px;">
+                    联系我们</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+                <li><a href="hot3.html">
+                    <img src="picture/home/意见反馈.png" class="layui-nav-img" style="width: 20px;height: 20px;">
+                    意见反馈</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+            </ul>
+        </div>
+        <!--  右侧结束   -->
       </div>
 
       <br><br>
