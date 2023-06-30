@@ -1,23 +1,4 @@
-  //轮播
-layui.use(function(){
-  var carousel = layui.carousel;
-  // 渲染 - 常规轮播
-  carousel.render({
-    elem: '#ID-carousel-demo-1',
-    width: 'auto'
-  });
-  
-  // 渲染 - 设置时间间隔、动画类型、宽高度等属性
-  carousel.render({
-    elem: '#ID-carousel-demo-2',
-    interval: 1800,
-    anim: 'fade',
-    width: 'auto',
-    height: '120px'
-  });
-});
- 
- 
+
  
  //首页左方
 layui.use(['element', 'layer', 'util'], function(){
@@ -67,7 +48,7 @@ layui.use(['element', 'layer', 'util'], function(){
     var isLiked = false;
     var likeButton = document.getElementById('likeButton');
     var likeCount = document.getElementById('likeCount');
-    var lkcount = 0;
+    var lkcount = 0;      //改为实际的点赞数
     
     function toggleLike() {
       if (isLiked) {
