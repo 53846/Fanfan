@@ -59,6 +59,18 @@
             background-color: #f2f2f2;
         }
     </style>
+        <style>
+  .friend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .delete-btn {
+    margin-left: auto;
+  }
+</style>
+</style>
     </head>
     <body>
       <div class="layui-layout layui-layout-admin">
@@ -181,12 +193,13 @@
                             <!-- 更多分组... -->
                         </div>
                         </div>
-                        <div class="layui-body">
+                        <div class="layui-body" >
                             <div style="padding: 10px ; ">
                         <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
                         <!--以下img表示好友头像，要接入库中由库输入，同时friend-name均为好友名称，friend-status为在线状态，friend-message为最近聊天记录，名字可改（接口处也要改）均需要由库输入-->
                             <div class="friend-item">
                                   <img src="picture/chat/美食.png" class="friend-avatar">
+                                <div class="friend-info">
                                   <a th:href="@{chat}">
                                   <div>
                                       <div class="friend-name">汉堡</div>
@@ -194,10 +207,13 @@
                                       <div class="friend-message">最近聊天记录：什么时候出去玩？</div>
                                   </div>
                                   </a>
-                                  <button style="" class="layui-btn layui-btn-danger layui-btn-sm delete-btn" >删除好友</button>
+                                    </div>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                  <button  class="layui-btn layui-btn-danger layui-btn-sm delete-btn" >删除好友</button>
                               </div>
                               <div class="friend-item">
                                   <img src="picture/chat/美食_披萨.png" class="friend-avatar">
+                                  <div class="friend-info">
                                   <a th:href="@{chat}">
                                   <div>
                                       <div class="friend-name">比萨</div>
@@ -205,7 +221,8 @@
                                       <div class="friend-message">最近聊天记录：天气太热了</div>
                                   </div>
                                   </a>
-                                  <button class="layui-btn layui-btn-danger layui-btn-sm delete-btn" >删除好友</button>
+                                      </div>
+                                  <button  class="layui-btn layui-btn-danger layui-btn-sm delete-btn"  >删除好友</button>
                               </div>
                         <!--上面从183行到204行均为静态好友列表样例，下方开始为动态代码，如果成品需要请删掉上方的静态样例。-->
                         <div class="container" id="friendList">
@@ -356,11 +373,14 @@
                         var friend = data[i];
                         html += '<div class="friend-item">';
                         html += '<img src="' + friend.avatar + '" class="friend-avatar">';
+                        html += '<div class="friend-info">';
                         html += '<div>';
                         html += '<div class="friend-name" onclick="viewChat(\'' + friend.id + '\')">' + friend.name + '</div>';
                         html += '<div class="friend-status">' + (friend.online ? '在线' : '离线') + '</div>';
                         html += '<div class="friend-message">最近聊天记录：' + friend.lastMessage + '</div>';
                         html += '</div>';
+                        html += '</div>';
+                        html += '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                         html += '<button class="layui-btn layui-btn-danger layui-btn-sm delete-btn" onclick="deleteFriend(\'' + friend.id + '\')">删除好友</button>';
                         html += '</div>';
                     }
