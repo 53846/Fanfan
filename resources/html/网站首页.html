@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>饭饭之交</title>
+  <link rel="icon" type="image/png" href="picture//home/饭饭之交.png">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="layui/css/layui.css" rel="stylesheet">
+  <link href="css/homepage.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+      <!-- 背景颜色开始 -->
+  <style>
+    body {
+      background-color:   rgba(193, 131, 38, 0.152);
+    }
+  </style>
+       <!-- 背景颜色结束 -->
+
+  <div class="layui-header  layui-bg-gray">
+
+    <!-- 头部搜素框开始 -->
+    <!-- 搜索框容器 -->
+    <div class="search-container">
+      <!-- 搜索输入框 -->
+      <input type="text" id="searchInput" class="search-input" placeholder="输入进行搜索">
+      <!-- 搜索按钮 -->
+      <button id="searchButton" class="search-button">搜索</button>
+  </div>
+
+  <!-- 相关内容显示区域 -->
+  <ul class="suggestions" id="suggestionsContainer"></ul>
+    <!-- 头部搜索框结束 -->
+
+    <div class="layui-logo layui-bg-gray">
+      <img src="picture/home/饭饭之交.png" class="layui-nav-img">
+      饭饭之交
+  </div>
+    
+    <ul class="layui-nav layui-layout-left layui-bg-gray">
+      <!-- 移动端显示 -->
+      <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+        <i class="layui-icon layui-icon-spread-left"></i>
+      </li>
+      <!--
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 1</a></li>
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 2</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">nav groups</a>
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">menu 11</a></dd>
+          <dd><a href="javascript:;">menu 22</a></dd>
+          <dd><a href="javascript:;">menu 33</a></dd>
+        </dl>
+         </li>
+       -->
+    </ul> 
+      
+
+
+    <ul class="layui-nav layui-layout-right layui-bg-gray">
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+<!--        <div class="layui-btn-container">-->
+<!--          <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">-->
+<!--            <a th:href="@{login}"> 登录</a>    &lt;!&ndash;改为登录界面&ndash;&gt;-->
+<!--          </button>-->
+<!--        </div>-->
+      </li>
+      <li class="layui-nav-item layui-hide-xs">
+        <a href="javascript:;">                   <!-- 跳转到聊天界面 -->
+          <img src="picture/home/消息.png"class="layui-nav-img" style="width: 25px;height: 25px;">消息
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+        <a href="javascript:;">                     <!--  不改  不跳转   -->     
+            <img src="picture/home/头像.png" class="layui-nav-img">
+            用户名
+        </a>    
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">              <!-- 跳转到个人界面 -->
+            <img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a>
+          </dd>
+          <dd><a href="javascript:;">              <!-- 投稿界面  -->
+            <img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a>
+          </dd>
+          <dd><a href="javascript:;">              <!-- 跳转到消息界面 -->
+            <img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a>
+          </dd>
+          <dd><a href="javascript:;">              <!-- 跳转到登录界面 -->
+            <img src="picture/home/退出.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-gray">
+    <div class="layui-side-scroll layui-bg-gray">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree layui-bg-gray" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">                  <!--  不改  不跳转   -->   
+            <img src="picture/home/热点内容.png" class="layui-nav-img">热点内容
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/推荐.png" class="layui-nav-img" style="width: 20px;height: 20px;">推荐</a>
+            </dd>
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/热门.png" class="layui-nav-img" style="width: 20px;height: 20px;">热门</a>
+            </dd>
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/附近.png" class="layui-nav-img" style="width: 20px;height: 20px;">附近</a>
+            </dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:;"> <!-- 跳转到好友列表  -->
+          <img src="picture/home/好友.png" class="layui-nav-img">好友</a>
+        </li>
+        <li class="layui-nav-item ">
+          <a href="javascript:;">                                      <!--  不改  不跳转   -->   
+            <img src="picture/home/活动.png" class="layui-nav-img">活动
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/个人征召.png" class="layui-nav-img" style="width: 20px;height: 20px;">个人征召</a>
+            </dd>
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/团建.png" class="layui-nav-img" style="width: 20px;height: 20px;">团建</a>
+            </dd>
+            <dd><a href="javascript:;">                     <!--  现阶段不改  不跳转   -->   
+              <img src="picture/home/官方活动.png" class="layui-nav-img" style="width: 20px;height: 20px;">官方活动</a>
+            </dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">                                      <!--  不改  不跳转   -->   
+            <img src="picture/home/更多.png" class="layui-nav-img">更多
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">待添加1</a></dd>                 <!--  现阶段不改  不跳转   --> 
+            <dd><a href="javascript:;">待添加2</a></dd>                 <!--  现阶段不改  不跳转   --> 
+            <dd><a href="javascript:;">待添加2</a></dd>                 <!--  现阶段不改  不跳转   --> 
+          </dl>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+     <div style="padding: 9% ; width: 70%;">
+
+  <!--  <div class="layui-btn-container">
+        <button type="button" class="layui-btn layui-btn-checked layui-btn-radius">类型一</button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius">类型二</button>
+        <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">类型三</button>
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-radius">类型四</button>
+        <button type="button" class="layui-btn layui-btn-radius layui-btn-radius">类型五</button>
+        <button type="button" class="layui-btn layui-btn-checked layui-btn-radius">类型六</button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-radius">类型七</button>
+        <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">类型八</button>
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-radius">类型九</button>
+      </div>    -->  
+      
+
+      
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header" >
+            <a href="javascript:;" layui-layout-right>    <!-- 跳转到查看他人的个人界面  -->
+              <img src="picture/home/头像.png" class="layui-nav-img" >
+              用户名
+          </a> 
+          </div>
+          <div class="layui-card-body" >
+            <a href="javascript:;" layui-layout-right>    <!-- 跳转到详情页  -->
+              <p class="homepage-titile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                我强烈推荐一家名叫"食之乐"的饭馆。</p>
+              <br>
+              <div class="ellipsis">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                我强烈推荐一家名叫"食之乐"的饭馆，它是我最喜欢的餐厅之一。
+               这家饭馆提供了一系列令人垂涎欲滴的菜肴，从传统的本地美食到国际化的烹饪风格，满足了各种口味的需求。
+               饭馆内部装饰典雅，环境舒适宜人，让人感觉宾至如归。员工们非常友好和专业，总是笑容满面并提供高水准的服务。
+               无论是家庭聚餐、朋友聚会还是浪漫约会，这里都是一个理想的选择。餐馆还提供预订服务，确保你能享受到完美的用餐体验。
+               无论你是寻找美食的探险者还是追求舌尖上的满足，"食之乐"饭馆绝对是不容错过的好去处。
+             </div> 
+             <br>
+             <div class="image-container">
+              <img src="picture/home/美食1.jpg" alt="Image 1">
+              <img src="picture/home/美食2.jpg" alt="Image 2">
+              <img src="picture/home/美食3.jpg" alt="Image 3">
+            </div>
+            </a>
+            <br>  
+            <div class="homepage-like-container">
+              <button id="likeButton" class="homepage-like-button" onclick="toggleLike()">点赞</button>
+              <a href="详情页的URL">
+                <button class="homepage-comment-button">评论</button>
+              </a>
+              <p class="like-count">点赞数：<span id="likeCount">0</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header">
+          下面是充数内容2
+          </div>
+          <div class="layui-card-body">
+            <br><br><br><br><br><br><br><br><br><br>        
+          </div>
+        </div>
+        <div class="layui-card layui-panel">
+        <div class="layui-card-header">
+          下面是充数内容3
+        </div>
+        <div class="layui-card-body">
+          <br><br><br><br><br><br><br><br><br><br>
+        </div>
+        </div>
+        <div class="layui-card layui-panel">
+        <div class="layui-card-header">
+          下面是充数内容4
+        </div>
+        <div class="layui-card-body">
+          <br><br><br><br><br><br><br><br><br><br>
+        </div>
+        </div>
+        <div class="layui-card layui-panel">
+        <div class="layui-card-header">
+          下面是充数内容5
+        </div>
+        <div class="layui-card-body">
+          <br><br><br><br><br><br><br><br><br><br>
+        </div>
+        </div>
+
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header">
+            下面是充数内容6
+          </div>
+          <div class="layui-card-body">
+            <br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header">
+            下面是充数内容7
+          </div>
+          <div class="layui-card-body">
+            <br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header">
+            下面是充数内容8
+          </div>
+          <div class="layui-card-body">       
+            <br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header">
+            下面是充数内容9
+          </div>
+          <div class="layui-card-body">
+            <br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+        <div class="layui-card layui-panel">
+          <div class="layui-card-header"> 
+            下面是充数内容10
+          </div>
+          <div class="layui-card-body">
+            <br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="homepage-container">
+        <ul>
+          <li><a href="hot1.html">
+            <img src="picture/home/关于我们.png" class="layui-nav-img" style="width: 25px;height: 25px;">
+            关于我们</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+          <li><a href="hot2.html">
+            <img src="picture/home/联系我们.png" class="layui-nav-img" style="width: 20px;height: 20px;">
+            联系我们</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+          <li><a href="hot3.html">
+            <img src="picture/home/意见反馈.png" class="layui-nav-img" style="width: 20px;height: 20px;">
+            意见反馈</a></li>                      <!--  替换为实际的目标页面的 URL  -->
+        </ul>
+      </div>
+      
+
+      <br><br>
+    </div>
+  </div>
+
+</div>
+<script src="layui/layui.js"></script>
+<script src="js/homepage.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
