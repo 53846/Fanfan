@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>个人信息</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 10px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    
+    .btn {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+    <link rel="stylesheet" href="./layui/css/layui.css" rel="stylesheet">
+	<script src="./layui/layui.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>个人信息</h1>	
+	<form id="personalInfoForm">
+    <div class="form-group">
+       
+		<img src="./images/用户-圆.png" style="margin-left:210px;">
+		<html>
+  <head>
+  	<link rel="stylesheet" href="./layui/css/layui.css" rel="stylesheet">
+  </head>
+    <br>
+	<button type="button" class="layui-btn" id="ID-upload-demo-btn" style="margin-left:247px;">
+      <i class="layui-icon layui-icon-upload"></i> 单图片上传
+    </button>
+	 <label for="name">头像:</label>
+  <div style="width:125px;margin-left:250px;"">
+    <div class="layui-upload-list">
+    <img class="layui-upload-img" id="ID-upload-demo-img" style="width: 100%; height: 92px;">
+    <div id="ID-upload-demo-text"></div>
+  </div>
+  <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="filter-demo">
+    <div class="layui-progress-bar" lay-percent=""></div>
+  </div>
+</div>
+<hr style="margin: 21px 0;">
+	  </div>
+	<div class="form-group">
+        <label for="name">用户名（账号）:</label>
+        <input type="text" id="idField" readonly>
+	  </div>
+      <div class="form-group">
+        <label for="name">用户昵称:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="password">用户密码:</label>
+        <input type="text" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="gender">用户性别:</label>
+        <input type="text" id="gender" name="gender" required>
+      </div>
+      <div class="form-group">
+        <label for="birthday">用户生日:</label>
+        <input type="text" id="birthday" name="birthday" required>
+      </div>
+	  <div class="form-group">
+        <label for="Mobile Phone">用户手机号:</label>
+        <input type="text" id="Mobile Phone" name="Mobile Phones" required>
+      </div>
+      <button type="submit" class="layui-btn layui-btn-primary" lay-on="test-confirm" style="margin-left:532px;">保存</button>
+    </form>
+  </div>
+
+  <script>
+    // 获取个人信息的函数
+    function fetchPersonalInfo() {
+      fetch('/api/personal-info') // 向后端发送 GET 请求获取个人信息
+        .then(response => response.json())
+        .then(data => {
+          const personalInfoForm = document.getElementById('personalInfoForm');
+          // 填充表单的初始值
+          personalInfoForm.elements.name.value = data.name;
+          personalInfoForm.elements.password.value = data.password;
+          personalInfoForm.elements.gender.value = data.gender;
+          personalInfoForm.elements.birthday.value = data.birthday;
+		  personalInfoForm.elements.Mobile Phone.value = data.Mobile Phone;
+        })
+        .catch(error => {
+          console.error('获取个人信息失败:', error);
+        });
+    }
+
+    // 保存个人信息的函数
+    function savePersonalInfo(event) {
+      event.preventDefault(); //
+</script>
+<script>
+   layui.use(function(){
+  var layer = layui.layer;
+  var util = layui.util;
+  // 事件
+  util.on('lay-on', {
+    "test-confirm": function(){
+      layer.confirm('是否保存？', {icon: 3}, function(){
+        layer.msg('已保存', {icon: 1});
+      }, function(){
+        layer.msg('未保存');
+      });
+    },
+  })
+});
+</script>
+<script>
+layui.use(function(){
+  var upload = layui.upload;
+  var layer = layui.layer;
+  var element = layui.element;
+  var $ = layui.$;
+  // 单图片上传
+  var uploadInst = upload.render({
+    elem: '#ID-upload-demo-btn',
+    url: 'https://httpbin.org/post', // 此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+    before: function(obj){
+      // 预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#ID-upload-demo-img').attr('src', result); // 图片链接（base64）
+      });
+      
+      element.progress('filter-demo', '0%'); // 进度条复位
+      layer.msg('上传中', {icon: 16, time: 0});
+    },
+    done: function(res){
+      // 若上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      // 上传成功的一些操作
+      // …
+      $('#ID-upload-demo-text').html(''); // 置空上传失败的状态
+    },
+    error: function(){
+      // 演示失败状态，并实现重传
+      var demoText = $('#ID-upload-demo-text');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    },
+    // 进度条
+    progress: function(n, elem, e){
+      element.progress('filter-demo', n + '%'); // 可配合 layui 进度条元素使用
+      if(n == 100){
+        layer.msg('上传完毕', {icon: 1});
+      }
+    }
+  });
+  // 多图片上传
+  upload.render({
+    elem: '#ID-upload-demo-btn-2',
+    url: 'https://httpbin.org/post', // 此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+    multiple: true,
+    before: function(obj){
+      // 预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#upload-demo-preview').append('<img src="'+result+'" alt="'+ file.name +'" style="width: 90px; height: 90px;">')
+      });
+    },
+    done: function(res){
+      // 上传完毕
+      // …
+    }
+  });
+});
+</script>

@@ -1,0 +1,247 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>聊天</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="./layui/css/layui.css" rel="stylesheet">
+    </head>
+ 
+    <body>
+        <div class="container">
+            <div class="leftSide">
+                <!--header-->
+                 <div class="header">
+                    <div class="layui-btn-container">
+                        <a href="friend" class="layui-icon layui-icon-return">返回好友列表</a>
+                    </div>
+                    <!--页面左上角放置一个返回按钮-->
+                    <ul class="nav_icons">
+                        <li><img src="./images/消息.png"></li>
+                        <li><img src="./images/用户-圆.png"></li>
+                    </ul>
+                 </div>
+				 <!----两个能够提供导航链接的icon图标---->
+                <!--下面一段div是search栏-->
+                <div class="search_chat">
+                    <div>
+                        <input type="text" placeholder="搜索...">
+                        <img src="./images/搜索.png">
+                    </div>
+                </div>
+                <!--聊天列表ChatList-->
+                <div class="chatlist">
+                    <div class="block active">
+                        <div class="imgbx">
+                            <img src="./images/美食.png" class="cover">
+                        </div>
+                        <div class="details">
+                            <div class="listHead">
+                                <h4>汉堡</h4>
+                                <p class="time">14:25</p>
+                            </div>
+                            <div class="message_p">
+                                <p>什么时候出去玩？</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="chatlist">
+                    <div class="block unread">
+                        <div class="imgbx">
+                            <img src="./images/美食_披萨.png" class="cover">
+                        </div>
+                        <div class="details">
+                            <div class="listHead">
+                                <h4>比萨</h4>
+                                <p class="time">15:10</p>
+                            </div>
+                            <div class="message_p">
+                                <p>天气太热了</p>
+                                <b>1</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="chatlist">
+                    <div class="block">
+                        <div class="imgbx">
+                            <img src="./images/可乐.png" class="cover">
+                        </div>
+                        <div class="details">
+                            <div class="listHead">
+                                <h4>可乐</h4>
+                                <p class="time">11:15</p>
+                            </div>
+                            <div class="message_p">
+                                <p>有点饿</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--这段是好友列表的主体代码，不用管-->
+                
+            </div>
+            <!--到此为止左边页面已设计完毕-->
+ 
+            <div class="rightSide">
+                <div class="header">
+                    <div class="imgText">
+                        <div class="userimg">
+                            <img src="./images/美食.png" class="cover">
+                        </div>
+                        <h4>汉堡<br><span>在线</span></h4>
+                    </div>
+                    <ul class="nav_icons">
+                        <li><img src="./images/消息.png"></li>
+                        <li><img src="./images/用户-圆.png"></li>
+                    </ul>
+                </div>
+				<!--右边"表头"-->
+                <!--下面是chatbox部分-->
+                <div class="chatBox">
+                    <div class="message my_message">
+							<p>你在干嘛呢？<br><span>10:15</span> </p>
+						<div>
+						<img src="./images/用户.png" width="30px" height="30px" style="margin-left:20px;">
+						</div>
+                    </div>
+                    <div class="message frnd_message">
+                        <div>
+						<img src="./images/美食.png" width="30px" height="30px" style="font-size: 30px;margin-left:-40px;">
+						</div>
+						<p>在写作业<br><span>10:15</span> </p>
+                    </div>
+                    <div class="message frnd_message">
+					    <div>
+						<img src="./images/美食.png" width="30px" height="30px" style="font-size: 30px;margin-left:-40px;">
+						</div>
+                        <p>天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了天气太热了<br><span>10:15 </span> </p>
+                    </div>
+                    <div class="message my_message">
+                        <p>对啊 也不下雨<br><span>10:15</span> </p>
+						<div>
+						<img src="./images/用户.png" width="30px" height="30px" style="margin-left:20px;">
+						</div>
+					</div>
+                    <div class="message my_message">
+                        <p>希望以后别这么热了<br><span>10:15</span> </p>
+						<div>
+						<img src="./images/用户.png" width="30px" height="30px" style="margin-left:20px;">
+						</div>
+                    </div>  
+                </div>
+ 
+                <!--chat input-->
+              <div class="layui-form-item chatbox_input">
+				<div class="layui-form">
+					<div class="layui-input-wrap layui-col-md11"">
+						<input type="text" name="chatContent" autocomplete="off" lay-affix="clear" class="layui-input">
+					</div>
+					<div class="layui-form-mid" style="padding: 0!important;"> 
+						<button type="button" class="layui-btn layui-btn-sm" style="margin-top:3px;margin-left:-40px;">send</button>
+					</div>
+				</div>
+			</div>
+        </div>
+    </body>
+	
+</html>
+
+<script>
+// 获取聊天列表的函数
+function fetchChatList() {
+  fetch('/api/chat-list') // 向后端发送 GET 请求获取聊天列表
+    .then(response => response.json())
+    .then(data => {
+      const chatListContainer = document.querySelector('.chatlist');
+      chatListContainer.innerHTML = ''; // 清空聊天列表容器
+
+      // 逐个添加聊天列表项
+      data.forEach(chat => {
+        const chatItem = document.createElement('div');
+        chatItem.classList.add('block');
+        chatItem.classList.add(chat.unread ? 'unread' : '');
+
+        const imgbx = document.createElement('div');
+        imgbx.classList.add('imgbx');
+        const image = document.createElement('img');
+        image.src = chat.image;
+        image.classList.add('cover');
+        imgbx.appendChild(image);
+
+        const details = document.createElement('div');
+        details.classList.add('details');
+
+        const listHead = document.createElement('div');
+        listHead.classList.add('listHead');
+        const name = document.createElement('h4');
+        name.textContent = chat.name;
+        const time = document.createElement('p');
+        time.classList.add('time');
+        time.textContent = chat.time;
+        listHead.appendChild(name);
+        listHead.appendChild(time);
+
+        const messageP = document.createElement('div');
+        messageP.classList.add('message_p');
+        const messageText = document.createElement('p');
+        messageText.textContent = chat.message;
+        const messageCount = document.createElement('b');
+        messageCount.textContent = chat.unread ? chat.unreadCount : '';
+        messageP.appendChild(messageText);
+        messageP.appendChild(messageCount);
+
+        details.appendChild(listHead);
+        details.appendChild(messageP);
+
+        chatItem.appendChild(imgbx);
+        chatItem.appendChild(details);
+
+        chatListContainer.appendChild(chatItem);
+      });
+    })
+    .catch(error => {
+      console.error('获取聊天列表失败:', error);
+    });
+}
+
+// 在页面加载完成后调用fetchChatList函数
+window.addEventListener('load', fetchChatList);
+</script>
+<script>
+// 发送消息的函数
+function sendMessage(message) {
+  fetch('/api/send-message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message }) // 将消息作为JSON数据发送到后端
+  })
+    .then(response => {
+      // 处理成功发送消息的响应
+      if (response.ok) {
+        console.log('消息发送成功');
+        // 在此可以执行相应的操作，例如更新聊天记录等
+      } else {
+        console.error('消息发送失败');
+      }
+    })
+    .catch(error => {
+      console.error('消息发送失败:', error);
+    });
+}
+
+// 监听发送按钮的点击事件
+const sendButton = document.querySelector('.chatbox_input button');
+sendButton.addEventListener('click', () => {
+  const input = document.querySelector('.chatbox_input input');
+  const message = input.value.trim();
+  if (message !== '') {
+    sendMessage(message);
+    input.value = ''; // 清空输入框
+  }
+});
+</script>
