@@ -8,13 +8,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
         <link rel="stylesheet" th:href="@{/css/homepage.css}"/>
+        <script src="layui/layui.js"></script>
+        <script src="js/homepage.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+        .friend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        }
+        .friend-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        }
+        .friend-name {
+        font-weight: bold;
+        }
+        .friend-status {
+        margin-left: auto;
+        }
+        .friend-message {
+        margin-top: 5px;
+        color: #999;
+        }
+        .delete-btn {
+        margin-left: 10px;
+        background-color: #FF5722;
+        color: #fff;
+        }
+        </style>
+        <style>
+        .nav-list {
+            margin: 20px;
+        }
+        .nav-group {
+            margin-bottom: 10px;
+        }
+        .group-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .nav-item {
+            margin-bottom: 5px;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .nav-item:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
     </head>
     <body>
       <div class="layui-layout layui-layout-admin">
         <!-- 背景颜色开始 -->
     <style>
       body {
-        background-color:   rgba(193, 131, 38, 0.152);
+        background-color:   rgba(240, 240, 225, 0.808);
       }
     </style>
          <!-- 背景颜色结束 -->
@@ -77,89 +128,278 @@
             <dd><a href="javascript:;"><img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a></dd>
             <dd><a href="javascript:;"><img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a></dd>
             <dd><a href="javascript:;"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a></dd>
-            <dd><a href="./登录.html"><img src="picture/home/登录.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
+            <dd><a href="./登录.html"><img src="picture/home/注销.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
           </dl>
         </li>
       </ul>
     </div>
   
-    <div class="layui-side layui-bg-gray">
-      <div class="layui-side-scroll layui-bg-gray">
-        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-        <ul class="layui-nav layui-nav-tree layui-bg-gray" lay-filter="test">
-          <li class="layui-nav-item layui-nav-itemed">
-            <a class="" href="javascript:;"><img src="picture/home/热点内容.png" class="layui-nav-img">热点内容</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;"><img src="picture/home/推荐.png" class="layui-nav-img" style="width: 20px;height: 20px;">推荐</a></dd>
-              <dd><a href="javascript:;"><img src="picture/home/热门.png" class="layui-nav-img" style="width: 20px;height: 20px;">热门</a></dd>
-              <dd><a href="javascript:;"><img src="picture/home/附近.png" class="layui-nav-img" style="width: 20px;height: 20px;">附近</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item"><a href="javascript:;"><a href="./好友列表以及聊天.html"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>
-          <li class="layui-nav-item ">
-            <a href="javascript:;"><img src="picture/home/活动.png" class="layui-nav-img">活动</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;"><img src="picture/home/个人征召.png" class="layui-nav-img" style="width: 20px;height: 20px;">个人征召</a></dd>
-              <dd><a href="javascript:;"><img src="picture/home/团建.png" class="layui-nav-img" style="width: 20px;height: 20px;">团建</a></dd>
-              <dd><a href="javascript:;"><img src="picture/home/官方活动.png" class="layui-nav-img" style="width: 20px;height: 20px;">官方活动</a></dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item">
-            <a href="javascript:;"><img src="picture/home/更多.png" class="layui-nav-img">更多</a>
-            <dl class="layui-nav-child">
-              <dd><a href="javascript:;">待添加1</a></dd>
-              <dd><a href="javascript:;">待添加2</a></dd>
-              <dd><a href="javascript:;">待添加2</a></dd>
-            </dl>
-          </li>
 
-        </ul>
-      </div>
-    </div>
+
             <div class="layui-body">
                 <!-- 内容主体区域 -->
+                <div style="padding: 100px ; width: 80%;">
                 <div class="layui-btn-container">
-                  <br>
-                  <!--下方应接地址使之能返回首页-->
-                  <a th:href="@{homepage}" class="layui-icon layui-icon-left">返回首页</a><br>
+                    <a th:href="@{homepage}" class="layui-icon layui-icon-left">返回首页</a>
+                  <!--应接地址使之能返回首页-->
+
                 </div>
+                    <div class="layui-card layui-panel">
                 <div style="padding: 15px;">
-                  <blockquote class="layui-elem-quote layui-text">
-                    好友列表
-                  </blockquote>
+
+                      好友列表<!-- 头部搜素框开始 -->
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <div class="layui-inline">
+                                <input type="text" name="keyword" id="keyword" placeholder="请输入关键字" class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn layui-btn-warm" id="searchBtn">搜索</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="searchResult"></div>
+                      <!-- 头部搜索框结束 -->
+                      <button type="button" class="layui-btn layui-btn-primary" lay-on="iframe" style="float:right;margin:-65px;margin-right:40px">添加好友</button>
+
+
                     <div class="layui-card-body">
-                    
-                    <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
-                        <a th:href="@{chat}">
-                        <!--以下img表示好友头像，要接入库中由库输入，同时friend_name均为好友名称，也需要由库输入-->
-                        <img src="picture/chat/表情.png" class="layui-nav-img"><span id="friend1_name"></span>
-                        <br><br>
-                          <a th:href="@{chat}">
-                          <img src="picture/chat/表情.png" class="layui-nav-img"><span id="friend2_name"></span>
-                          </a>
-                          <br><br>
-                          <a th:href="@{chat}">
-                          <img src="picture/chat/表情.png" class="layui-nav-img"><span id="friend3_name"></span>
-                        </a>
-                        <br><br>
-                          <a th:href="@{chat}">
-                          <img src="picture/chat/表情.png" class="layui-nav-img"><span id="friend4_name"></span>
-                        </a>
-                          <br><br>
-                          <a th:href="@{chat}">
-                            <img src="picture/chat/表情.png" class="layui-nav-img"><span id="friend5_name"></span>
-                          </a>
-                        </a>
+                        <div class="layui-side-scroll layui-bg-gray">
+                        <div class="nav-list">
+                            <div class="nav-group">
+                                <div class="group-title">好友分类</div>
+                                <div class="nav-item">特别关注</div>
+                                <div class="nav-item">朋友</div>
+                                <div class="nav-item">亲人</div>
+                                <div class="nav-item">同学</div>
+                                <div class="nav-item">网友</div>
+                                <div class="nav-item">未分类</div>
+                                <!-- 更多关注... -->
+                            </div>
+                            <!-- 更多分组... -->
+                        </div>
+                        </div>
+                        <div class="layui-body">
+                            <div style="padding: 10px ; ">
+                        <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+                        <!--以下img表示好友头像，要接入库中由库输入，同时friend-name均为好友名称，friend-status为在线状态，friend-message为最近聊天记录，名字可改（接口处也要改）均需要由库输入-->
+                            <div class="friend-item">
+                                  <img src="picture/chat/美食.png" class="friend-avatar">
+                                  <a th:href="@{chat}">
+                                  <div>
+                                      <div class="friend-name">汉堡</div>
+                                      <div class="friend-status">在线</div>
+                                      <div class="friend-message">最近聊天记录：什么时候出去玩？</div>
+                                  </div>
+                                  </a>
+                                  <button style="" class="layui-btn layui-btn-danger layui-btn-sm delete-btn" >删除好友</button>
+                              </div>
+                              <div class="friend-item">
+                                  <img src="picture/chat/美食_披萨.png" class="friend-avatar">
+                                  <a th:href="@{chat}">
+                                  <div>
+                                      <div class="friend-name">比萨</div>
+                                      <div class="friend-status">离线</div>
+                                      <div class="friend-message">最近聊天记录：天气太热了</div>
+                                  </div>
+                                  </a>
+                                  <button class="layui-btn layui-btn-danger layui-btn-sm delete-btn" >删除好友</button>
+                              </div>
+                        <!--上面从183行到204行均为静态好友列表样例，下方开始为动态代码，如果成品需要请删掉上方的静态样例。-->
+                        <div class="container" id="friendList">
+                            <!-- 动态渲染好友列表 -->
+                        </div>
                       </li>
+                            </div>
                       <br>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    </div>
                     </div>
                   </div>
                   <br><br>
                 </div>
+                </div>
               </div>
-      <script src="layui/layui.js"></script>
-      <script src="js/homepage.js"></script>
-      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script>
+            layui.use(function(){
+              var layer = layui.layer;
+              var util = layui.util;
+              // 批量事件
+              util.on('lay-on', {
+                'iframe': function(){
+                    layer.open({
+                        type: 2,
+                        title: '添加好友',
+                        shadeClose: true,
+                        maxmin: true, //开启最大化最小化按钮
+                        area: ['600px', '400px'],
+                        content: '@{searchFriend}'
+                    });
+                }
+              });
+            });
+            </script>
+      <script>
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+
+            // 监听搜索按钮点击事件
+            $('#searchBtn').on('click', function () {
+                var keyword = $('#keyword').val();
+
+                // 发起 AJAX 请求搜索好友
+                $.ajax({
+                    url: '/api/searchFriend',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { keyword: keyword },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            renderSearchResult(res.data);
+                        } else {
+                            layer.msg(res.msg, { icon: 2 });
+                        }
+                    },
+                    error: function () {
+                        layer.msg('网络请求失败', { icon: 2 });
+                    }
+                });
+            });
+
+            // 渲染搜索结果
+            function renderSearchResult(data) {
+                var html = '';
+
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var friend = data[i];
+                        html += '<div class="layui-col-md3">';
+                        html += '<div class="layui-card">';
+                        html += '<div class="layui-card-header">';
+                        html += '<div class="layui-row">';
+                        html += '<div class="layui-col-md2">';
+                        html += '<div class="layui-avatar">';
+                        html += '<img src="' + friend.avatar + '">';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<div class="layui-col-md10">';
+                        html += '<h3>' + friend.name + '</h3>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
+                } else {
+                    html += '<p>未找到匹配的好友</p>';
+                }
+
+                $('#searchResult').html(html);
+
+                // 监听好友卡片点击事件
+                $('.layui-card').on('click', function () {
+                    var name = $(this).find('h3').text();
+
+                    // 弹出小窗口显示头像和姓名
+                    layer.open({
+                        type: 1,
+                        title: name,
+                        content: '<div style="padding: 20px;">
+                                <img src="' + friend.avatar + '" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
+                                <p>' + friend.name + '</p>
+                                <button class="layui-btn layui-btn-normal" id="jumpBtn">跳转</button>
+                            </div>
+                        '
+                    });
+
+                    // 监听跳转按钮点击事件
+                    $('#jumpBtn').on('click', function () {
+                        // 在此处添加跳转逻辑
+                        window.location.href = 'https://example.com'; // 替换为跳到的网页聊天界面
+                    });
+                });
+            }
+        });
+    </script>
+    <!--示例代码中的 friend.avatar 是一个占位符，需要根据你的实际数据结构进行替换。假设你的好友数据结构包含了 avatar 和 name 字段，你可以将其替换为真实的字段名。例如：
+          html += '<img src="' + friend.avatar + '">';
+          html += '<h3>' + friend.name + '</h3>';
+          请确保在渲染搜索结果时，friend.avatar 和 friend.name 分别指向好友数据中的头像和姓名字段。-->
+      <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+      <script>
+        $(document).ready(function () {
+            // AJAX 请求获取好友列表数据
+            $.ajax({
+                url: '/api/friendList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code === 0) {
+                        renderFriendList(res.data);
+                    } else {
+                        console.log(res.msg);
+                    }
+                },
+                error: function () {
+                    console.log('网络请求失败');
+                }
+            });
+
+            // 渲染好友列表
+            function renderFriendList(data) {
+                var html = '';
+
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var friend = data[i];
+                        html += '<div class="friend-item">';
+                        html += '<img src="' + friend.avatar + '" class="friend-avatar">';
+                        html += '<div>';
+                        html += '<div class="friend-name" onclick="viewChat(\'' + friend.id + '\')">' + friend.name + '</div>';
+                        html += '<div class="friend-status">' + (friend.online ? '在线' : '离线') + '</div>';
+                        html += '<div class="friend-message">最近聊天记录：' + friend.lastMessage + '</div>';
+                        html += '</div>';
+                        html += '<button class="layui-btn layui-btn-danger layui-btn-sm delete-btn" onclick="deleteFriend(\'' + friend.id + '\')">删除好友</button>';
+                        html += '</div>';
+                    }
+                } else {
+                    html += '<p>暂无好友</p>';
+                }
+
+                $('#friendList').html(html);
+            }
+
+            // 查看聊天界面
+            function viewChat(friendId) {
+                // 根据 friendId 执行相应的跳转逻辑
+                window.location.href = '/chat?friendId=' + friendId;
+                ///chat?friendId=friendID为跳转地址，后面friendID为参数，整个均是可更改的。
+            }
+            // 删除好友
+            function deleteFriend(friendId) {
+                // 发起 AJAX 请求删除好友
+                $.ajax({
+                    url: '/api/deleteFriend',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { friendId: friendId },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            console.log('删除成功');
+                            // 刷新好友列表
+                            location.reload();
+                        } else {
+                            console.log(res.msg);
+                        }
+                    },
+                    error: function () {
+                        console.log('网络请求失败');
+                    }
+                });
+            }
+        });
+    </script>
     </body>
 </html>

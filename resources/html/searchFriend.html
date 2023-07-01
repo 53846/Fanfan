@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索并添加好友</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/layui/2.5.7/layui.min.js"></script>
+</head>
+<body>
+<div class="layui-container"style="width: 500px; margin: 21px auto 0;">
+
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <input type="text" name="keyword" id="keyword" placeholder="请输入关键字" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <button class="layui-btn layui-btn-warm layui-btn-radius" id="searchBtn">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="searchResult"></div>
+</div>
+
+<script>
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+
+            // 监听搜索按钮点击事件
+            $('#searchBtn').on('click', function () {
+                var keyword = $('#keyword').val();
+
+                // 发起 AJAX 请求搜索好友
+                $.ajax({
+                    url: '/api/search',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { keyword: keyword },
+                    success: function (res) {
+                        if (res.success) {
+                            renderSearchResult(res.data);
+                        } else {
+                            layer.msg(res.message, { icon: 2 });
+                        }
+                    },
+                    error: function () {
+                        layer.msg('网络请求失败', { icon: 2 });
+                    }
+                });
+            });
+
+            // 渲染搜索结果
+            function renderSearchResult(data) {
+                var html = '';
+
+                if (data.length > 0) {
+                    html += '<ul class="layui-timeline">';
+                    for (var i = 0; i < data.length; i++) {
+                        var friend = data[i];
+                        html += '<li class="layui-timeline-item">';
+                        html += '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>';
+                        html += '<div class="layui-timeline-content layui-text">';
+                        html += '<h3 class="layui-timeline-title">' + friend.name + '</h3>';
+                        html += '<p>电话：' + friend.phone + '</p>';
+                        html += '<button class="layui-btn layui-btn-sm layui-btn-normal" onclick="addFriend(\'' + friend.id + '\')">添加好友</button>';
+                        html += '</div>';
+                        html += '</li>';
+                    }
+                    html += '</ul>';
+                } else {
+                    html += '<p>未找到匹配的好友</p>';
+                }
+                $('#searchResult').html(html);
+            }
+            // 添加好友
+            function addFriend(id) {
+                // 发起 AJAX 请求添加好友
+                $.ajax({
+                    url: '/api/addFriend',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { friendId: id },
+                    success: function (res) {
+                        if (res.success) {
+                            layer.msg('成功添加好友', { icon: 1 });
+                        } else {
+                            layer.msg(res.message, { icon: 2 });
+}
+},
+error: function () {
+layer.msg('网络请求失败', { icon: 2 });
+}
+});
+}
+});
+</script>
+
+</body>
+</html>
