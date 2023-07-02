@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>发帖</title>
+  <link rel="icon" type="image/png" href="picture/home/饭饭之交.png">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/homepage.css}"/>
+  
+</head>
+
+<body>
+<div class="layui-layout layui-layout-admin">
+      <!-- 背景颜色开始 -->
+  <style>
+    body {
+      background-color:   rgba(202, 242, 209, 0.268);
+    }
+  </style>
+       <!-- 背景颜色结束 -->
+
+  <div class="layui-header  layui-bg-gray">
+
+
+  <!-- 相关内容显示区域 -->
+  <ul class="suggestions" id="suggestionsContainer"></ul>
+    <!-- 头部搜索框结束 -->
+
+    <div class="layui-logo layui-bg-gray">
+      <img src="picture/home/饭饭之交.png" class="layui-nav-img">
+      饭饭之交
+  </div>
+    
+    <ul class="layui-nav layui-layout-left layui-bg-gray">
+      <!-- 移动端显示 -->
+      <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+        <i class="layui-icon layui-icon-spread-left"></i>
+      </li>
+      <!--
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 1</a></li>
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 2</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">nav groups</a>
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">menu 11</a></dd>
+          <dd><a href="javascript:;">menu 22</a></dd>
+          <dd><a href="javascript:;">menu 33</a></dd>
+        </dl>
+         </li>
+       -->
+    </ul> 
+      
+
+
+    <ul class="layui-nav layui-layout-right layui-bg-gray">
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+<!--        <div class="layui-btn-container">-->
+<!--          <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">-->
+<!--            <a th:href="@{login}"> 登录</a>    &lt;!&ndash;改为登录界面&ndash;&gt;-->
+<!--          </button>-->
+<!--        </div>-->
+      </li>
+      
+<!--      <li class="layui-nav-item layui-hide-xs">-->
+<!--        <a href="javascript:;">                   &lt;!&ndash; 跳转到聊天界面 &ndash;&gt;-->
+<!--          <img src="picture/home/消息.png"class="layui-nav-img" style="width: 25px;height: 25px;">消息-->
+<!--        </a>-->
+<!--      </li>-->
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+        <a href="javascript:;">                     <!--  不改  不跳转   -->     
+            <img src="picture/home/头像.png" class="layui-nav-img">
+            用户名
+        </a>    
+        <dl class="layui-nav-child"> 
+          <dd><a href="javascript:;">              <!-- 跳转到个人界面 -->
+            <img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a>
+          </dd>
+<!--          <dd><a href="javascript:;">              &lt;!&ndash; 投稿界面  &ndash;&gt;-->
+<!--            <img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a>-->
+<!--          </dd>-->
+          <dd><a href="javascript:;">              <!-- 跳转到消息界面 -->
+            <img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a>
+          </dd>
+          <dd><a href="javascript:;">              <!-- 跳转到登录界面 -->
+            <img src="picture/home/退出.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+  
+  <div class="layui-body">
+     <div style="padding: 130px ; width: 70%;">
+
+<!-- 给容器追加 class="layui-form-pane"，即可显示为方框风格 -->
+<form class="layui-form layui-form-pane" th:action="@{/postThread}"  method = "post">
+  <div class="layui-form-item">
+    <label class="layui-form-label">题目</label>
+    <div class="layui-input-block">
+      <input type="text" id="threadTitle" name="threadTitle" autocomplete="off" placeholder="请输入" lay-verify="required" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">正文</label>
+    <div class="layui-input-block">
+      <textarea id="threadContent" name="threadContent" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">图片上传：</label>
+    <div class="layui-input-block ">
+      <div class="layui-upload">
+        <button type="button" class="layui-btn" id="uploadImage">上传</button>
+        <div class="layui-upload-list">
+          <img class="layui-upload-img" id="previewImage">
+        </div>
+        <input type="hidden" name="image" id="imageInput" value="">
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <button class="layui-btn" lay-submit lay-filter="demo2">确认</button>
+    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+  </div>
+</form>
+
+
+
+      
+
+      <br><br>
+    </div>
+  </div>
+
+</div>
+<script src="layui/layui.js"></script>
+<script src="js/homepage.js"></script>
+<!--<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<script>
+ layui.use(['form', 'upload', 'layer'], function(){
+  var $ = layui.$;
+  var form = layui.form;
+  var upload = layui.upload;
+  var layer = layui.layer;
+
+  // 上传图片
+  var uploadInst = upload.render({
+    elem: '#uploadImage',
+    url: 'https://httpbin.org/post', // 替换为实际的图片上传接口地址
+    done: function(res){
+      if (res.code === 0) {
+        var imageUrl = res.data.url;
+        $('#previewImage').attr('src', imageUrl);
+        $('#imageInput').val(imageUrl);
+      } else {
+        layer.msg('上传失败');
+      }
+    },
+    error: function(){
+      layer.msg('上传失败');
+    }
+  });
+
+  // 提交事件
+  form.on('submit(demo2)', function(data){
+    var field = data.field; // 获取表单字段值
+
+    // 如果要使用form表单来调用后台接口，请将下面代码注释，最后将return false改成return true;
+    var loadIndex = layer.msg("发布中", {
+        icon: 16,
+        shade: 0.01
+      });
+
+    $.ajax({
+      type: "POST",
+      url: "[[@{/postThread}]]",
+      contentType: "application/json",
+      data: JSON.stringify(field),
+      dataType: "json",
+      success: function(data) {
+        var success = data.success;
+        layer.close(loadIndex);
+        // 注册不成功
+        if (!success) {
+            layer.msg(data.msg, {icon: 0});
+            return;
+        }
+       // 注册成功，打开主页
+        window.location.href= "[[@{/homepage}]]";
+      }
+    });
+<!--    layer.alert(JSON.stringify(field), {-->
+<!--      title: '当前填写的字段值',-->
+<!--      yes: function(index, layero) {-->
+<!--        // 发布成功后跳转到另一个界面-->
+<!--        layer.close(index); // 关闭弹窗-->
+<!--        layer.msg('发布成功'); // 显示发布成功的提示-->
+<!--        setTimeout(function() {-->
+<!--          window.location.href = "[[@{/homepage}]]";                     // 替换为你要跳转的页面路径-->
+<!--        }, 1000); // 延迟1秒后跳转-->
+<!--      }-->
+<!--    });-->
+    // 执行图片上传操作
+    var image = $('#imageInput').val();
+     //在这里进行图片上传的操作，可通过Ajax等方式将图片URL提交到服务器
+    // ...
+    
+    return false; // 阻止默认 form 跳转
+  });
+});
+    </script>
+</body>
+</html>

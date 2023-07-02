@@ -8,7 +8,6 @@
   </head>
 <body>
 
-<script src="@{layui/layui.js}"></script>
 <!--    <img src="./lastlogo.png" width="400" height="150" />-->
 <style>
 .demo-reg-container{width: 320px; margin: 21px auto 0;}
@@ -29,18 +28,14 @@
     </div>
     <div class="layui-form-item">
       <div class="layui-row">
-        <div class="layui-form-item">
-          <div class="layui-row">
-            <div class="layui-input-wrap">
-              <div class="layui-input-wrap">
-                <div class="layui-input-prefix">
-                  <i class="layui-icon layui-icon-cellphone"></i>
-                </div>
-                <input type="text" id="phoneNum" name="phoneNum" value="" lay-verify="required|phone" placeholder="手机号" lay-reqtext="请填写手机号" autocomplete="off" class="layui-input">
-              </div>
-            </div>
+        <div class="layui-input-wrap">
+          <div class="layui-input-prefix">
+            <i class="layui-icon layui-icon-cellphone"></i>
           </div>
+          <input type="text" id="phoneNum" name="phoneNum" value="" lay-verify="required|phone" placeholder="手机号" lay-reqtext="请填写手机号" autocomplete="off" class="layui-input">
         </div>
+      </div>
+    </div>
     <div class="layui-form-item">
       <div class="layui-input-wrap">
         <div class="layui-input-prefix">
@@ -65,44 +60,77 @@
         <input type="text" id="nickName" name="nickName" value="" lay-verify="required" placeholder="昵称" autocomplete="off" class="layui-input" lay-affix="clear">
       </div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="text-align: right;">
       <input type="checkbox" name="register_agreement" lay-verify="required" lay-skin="primary" title="同意">
       <a th:href="@{privacyPolicy}" target="_blank" style="position: relative; top: 6px; ;">
         <ins>用户协议</ins>
       </a>
     </div>
     <div class="layui-form-item">
-      <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="demo-reg">注册</button>
+      <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="demo-regi">注册</button>
     </div>
-    <div class="layui-form-item demo-reg-other">
-      <a th:href="@{login}">登录已有帐号</a></span>
+    <div class="layui-form-item demo-reg-other" style="text-align: right;">
+      <a th:href="@{/indexLogin}">登录已有帐号</a></span>
     </div>
   </div>
 </form>
+<script th:src="@{layui/layui.js}"></script>
 <script>
 layui.use(function(){
-  var $ = layui.$;
-  var form = layui.form;
-  var layer = layui.layer;
-  var util = layui.util;
+  var $ = layui.$,
+    form = layui.form,
+    layer = layui.layer,
+    util = layui.util;
 
   // 自定义验证规则
   form.verify({
     // 确认密码
     confirmPassword: function(value, item){
-      var passwordValue = $('#register_password').val();
+      var passwordValue = $('#password').val();
       if(value !== passwordValue){
         return '两次密码输入不一致';
       }
     }
   });
-
+debugger
   // 提交事件
-    form.on('submit(demo-reg)', function(data) {
+  form.on('submit(demo-regi)', function(data){
     var field = data.field; // 获取表单字段值
-    return true;
-  }
 
+    // 判断是否勾选了同意注册协议
+    if (!field.register_agreement) {
+      layer.msg('请先同意注册协议', {icon: 0});
+      return false; // 阻止表单提交
+    }
+
+    // 如果要使用form表单来调用后台接口，请将下面代码注释，最后将return false改成return true;
+    var loadIndex = layer.msg("注册中", {
+        icon: 16,
+        shade: 0.01
+      });
+
+    // 使用ajax异步请求用户注册接口
+    $.ajax({
+       type: "POST",
+       url: "[[@{/submitRegister}]]",
+       contentType: "application/json",
+       data: JSON.stringify(field),
+       dataType: "json",
+       success: function(data) {
+         var success = data.success;
+         layer.close(loadIndex);
+         // 注册不成功
+         if (!success) {
+             layer.msg(data.msg, {icon: 0});
+             return;
+         }
+         // 注册成功，打开登陆页
+         window.location.href= "[[@{/indexLogin}]]";
+       }
+    });
+    // 阻止form表单使用同步请求的方式提交
+    return false;
+  });
 });
 </script>
 </body>

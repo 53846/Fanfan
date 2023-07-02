@@ -5,10 +5,42 @@
   <meta charset="utf-8">
   <title>修改用户信息</title>
   <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+  <style>
+.demo-reg-container {
+  width: 320px;
+  margin: 21px auto 0;
+}
+
+.demo-reg-other .layui-icon {
+  position: relative;
+  display: inline-block;
+  margin: 0 2px;
+  top: 2px;
+  font-size: 26px;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column; /* 修改为垂直方向排列 */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.upload-button {
+  margin-top: 10px; /* 添加上方间距 */
+}
+
+  </style>
 </head>
 <body>
 
-<script src="@{layui/layui.js}"></script>
 <!--    <img src="./lastlogo.png" width="400" height="150" />-->
 <style>
 .demo-reg-container{width: 320px; margin: 21px auto 0;}
@@ -16,86 +48,125 @@
 </style>
 <form class="layui-form" th:action = "@{/updateUser}" method = "post">
   <div class="demo-reg-container">
-    <img src="picture/home/饭饭之交.png"  width = 100% height = 100% >
+<!--    <img src="picture/home/饭饭之交.png"  width = 100% height = 100% >-->
+    <div class="avatar-container">
+      <img id="avatarPreview" class="avatar-image" src="" alt="用户头像">
+      <input type="file" id="avatarInput" name="avatarFile" accept="image/*" style="display: none;">
+      <button type="button" class="layui-btn layui-btn-primary upload-button" onclick="selectAvatarFile()">上传头像</button>
+    </div>
     <div class="layui-form-item">
-      <input type="text" name="userId" th:value="${session.userInfo.id}" hidden>
+      <input type="text" id="userId" name="userId" hidden>
       <div class="layui-row">
         <div class="layui-input-wrap">
           <div class="layui-input-prefix">
             <i class="layui-icon layui-icon-username"></i>
           </div>
-          <input type="text" id="userName" name="userName" value="" th:value="${session.userInfo.userName}" lay-verify="required" placeholder="用户名" lay-reqtext="请填写用户名" autocomplete="off" class="layui-input">
+          <input type="text" id="userName" name="userName" value="" lay-verify="required" placeholder="用户名" lay-reqtext="请填写用户名" autocomplete="off" class="layui-input">
         </div>
       </div>
     </div>
     <div class="layui-form-item">
       <div class="layui-row">
-        <div class="layui-form-item">
-          <div class="layui-row">
-            <div class="layui-input-wrap">
-              <div class="layui-input-wrap">
-                <div class="layui-input-prefix">
-                  <i class="layui-icon layui-icon-cellphone"></i>
-                </div>
-                <input type="text" id="phoneNum" name="phoneNum" value="" th:value="${session.userInfo.phoneNum}" lay-verify="required|phone" placeholder="手机号" lay-reqtext="请填写手机号" autocomplete="off" class="layui-input">
-              </div>
-            </div>
+        <div class="layui-input-wrap">
+          <div class="layui-input-prefix">
+            <i class="layui-icon layui-icon-cellphone"></i>
           </div>
-        </div>
-        <div class="layui-form-item">
-          <div class="layui-input-wrap">
-            <div class="layui-input-prefix">
-              <i class="layui-icon layui-icon-password"></i>
-            </div>
-            <input type="password" id="password" name="password" value="" placeholder="密码" autocomplete="off" class="layui-input" lay-affix="eye">
-          </div>
-        </div>
-        <div class="layui-form-item">
-          <div class="layui-input-wrap">
-            <div class="layui-input-prefix">
-              <i class="layui-icon layui-icon-password"></i>
-            </div>
-            <input type="password" name="confirmPassword" value="" lay-verify="confirmPassword" placeholder="确认密码" autocomplete="off" class="layui-input" lay-affix="eye">
-          </div>
-        </div>
-        <div class="layui-form-item">
-          <div class="layui-input-wrap">
-            <div class="layui-input-prefix">
-              <i class="layui-icon layui-icon-username"></i>
-            </div>
-            <input type="text" id="nickName" name="nickName" value="" th:value="${session.userInfo.nickName}" lay-verify="required" placeholder="昵称" autocomplete="off" class="layui-input" lay-affix="clear">
-          </div>
-        </div>
-
-        <div class="layui-form-item">
-          <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="demo-mdf">确认</button>
+          <input type="text" id="phoneNum" name="phoneNum" value="" lay-verify="required|phone" placeholder="手机号" lay-reqtext="请填写手机号" autocomplete="off" class="layui-input">
         </div>
       </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-wrap">
+        <div class="layui-input-prefix">
+          <i class="layui-icon layui-icon-password"></i>
+        </div>
+        <input type="password" id="password" name="password" value="" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" lay-affix="eye">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-wrap">
+        <div class="layui-input-prefix">
+          <i class="layui-icon layui-icon-password"></i>
+        </div>
+        <input type="password" name="confirmPassword" value="" lay-verify="required|confirmPassword" placeholder="确认密码" autocomplete="off" class="layui-input" lay-affix="eye">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-wrap">
+        <div class="layui-input-prefix">
+          <i class="layui-icon layui-icon-username"></i>
+        </div>
+        <input type="text" id="nickName" name="nickName" value="" lay-verify="required" placeholder="昵称" autocomplete="off" class="layui-input" lay-affix="clear">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <button class="layui-btn layui-btn-warm layui-btn-fluid" lay-submit lay-filter="demo-mdf">确认</button>
+    </div>
+  </div>
 </form>
+<script th:src="@{layui/layui.js}"></script>
 <script>
-layui.use(function(){
-  var $ = layui.$;
-  var form = layui.form;
-  var layer = layui.layer;
-  var util = layui.util;
+var contextPath = [[@{/}]];
+layui.use(function() {
+  var $ = layui.$,
+    form = layui.form,
+    layer = layui.layer,
+    util = layui.util;
 
-  // 自定义验证规则
-  form.verify({
+    // 使用layui提供的url解析方法获取userId
+    var url = layui.url();
+    var userId = url.search.userId;
+      var loadIndex = layer.msg("加载用户信息中", {
+        icon: 16,
+        shade: 0.01
+      });
+
+    // 使用ajax异步请求用户信息
+    $.ajax({
+       type: "GET",
+       url: "[[@{/userInfo}]]",
+       data: "userId=" + userId,
+       dataType: "json",
+       success: function(data) {
+         var success = data.success;
+         layer.close(loadIndex);
+         // 请求不成功
+         if (!success) {
+             layer.msg(data.msg, {icon: 0});
+             return;
+         }
+
+         // 请求成功，渲染表单数据
+         var userInfo = data.userInfo;
+         $("#userId").val(userInfo.id);
+         $("#userName").val(userInfo.userName);
+         $("#phoneNum").val(userInfo.phoneNum);
+         $("#nickName").val(userInfo.nickName);
+
+         // 渲染用户头像
+         var avatarUrl = userInfo.userAvatar;
+         if (avatarUrl) {
+           $("#avatarPreview").attr("src", contextPath + "picture/" + avatarUrl);
+         }
+       }
+    });
+
+    // 自定义验证规则
+    form.verify({
     // 确认密码
     confirmPassword: function(value, item){
       var passwordValue = $('#password').val();
-      if(value !== passwordValue){
+      if(passwordValue && value && value !== passwordValue){
         return '两次密码输入不一致';
       }
     }
   });
 
   // 提交事件
-    form.on('submit(demo-mdf)', function(data) {
+  form.on('submit(demo-mdf)', function(data){
     var field = data.field; // 获取表单字段值
     return true;
-  }
-
+  });
 });
 </script>
 </body>

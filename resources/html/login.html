@@ -7,8 +7,8 @@
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
 </head>
 <body>
-    <script th:src="@{/layui/layui.js}"></script>
-    <style>
+<script th:src="@{/layui/layui.js}"></script>
+<style>
 .demo-login-container{width: 320px; margin: 21px auto 0;}
 .demo-login-other .layui-icon{position: relative; display: inline-block; margin: 0 2px; top: 2px; font-size: 26px;}
 </style>
@@ -39,7 +39,7 @@
                 <div class="layui-input-prefix">
                   <i class="layui-icon layui-icon-vercode"></i>
                 </div>
-                <input type="text" name="captcha" value="" lay-verify="required" placeholder="验证码" lay-reqtext="请填写验证码" autocomplete="off" class="layui-input" lay-affix="clear">
+                <input type="text" name="login_captcha" value="" lay-verify="required" placeholder="验证码" lay-reqtext="请填写验证码" autocomplete="off" class="layui-input" lay-affix="clear">
               </div>
             </div>
             <div class="layui-col-xs5">
@@ -59,46 +59,47 @@
     </form>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
-layui.use(function(){
+layui.use(function() {
   var form = layui.form;
   var layer = layui.layer;
-  var util = layui.uyil;
   var $ = layui.$;
-  debugger
+
   $("#captcha").on("click", function() {
     $(this).attr("src", "[[@{/captcha}]]?t=" + new Date().getTime());
   });
-  // 提交事件
-  form.on('submit(demo-login)', function(data) {
-    return true;
-  }
-<!--  form.on('submit(demo-login)', function(data){-->
-<!--    var field = data.field; // 获取表单字段值-->
-<!--&lt;!&ndash;    // 显示填写结果，仅作演示用&ndash;&gt;-->
-<!--&lt;!&ndash;    layer.alert(JSON.stringify(field), {&ndash;&gt;-->
-<!--&lt;!&ndash;      title: '当前填写的字段值'&ndash;&gt;-->
-<!--&lt;!&ndash;    });&ndash;&gt;-->
-<!--&lt;!&ndash;    // 此处可执行 Ajax 等操作&ndash;&gt;-->
-<!--&lt;!&ndash;    // …&ndash;&gt;-->
-<!--    debugger-->
-<!--    // 如果要使用form表单来调用后台接口，请将下面代码注释，最后将return false改成return true;-->
-<!--    var loadIndex = layer.msg("登录中", {-->
-<!--        icon: 16,-->
-<!--        shade: 0.01-->
-<!--      });-->
 
-<!--    $.ajax({-->
-<!--       type: "POST",-->
-<!--       url: "../login",-->
-<!--       contentType: "application/json",-->
-<!--       data: JSON.stringify(field),-->
-<!--       success: function(msg) {-->
-<!--         layer.alert(msg);-->
-<!--         layer.close(loadIndex);-->
-<!--       }-->
-<!--    });-->
-<!--    return false;-->
-<!--  });-->
+  // 提交事件
+  form.on('submit(demo-login)', function(data){
+    var field = data.field; // 获取表单字段值
+
+    // 如果要使用form表单来调用后台接口，请将下面代码注释，最后将return false改成return true;
+    var loadIndex = layer.msg("登录中", {
+        icon: 16,
+        shade: 0.01
+      });
+
+    // 使用ajax异步请求登录系统
+    $.ajax({
+       type: "POST",
+       url: "[[@{/login}]]",
+       contentType: "application/json",
+       data: JSON.stringify(field),
+       dataType: "json",
+       success: function(data) {
+         var success = data.success;
+         layer.close(loadIndex);
+         // 登录不成功
+         if (!success) {
+             layer.msg(data.msg, {icon: 0});
+             return;
+         }
+         // 登录成功，打开首页
+         window.location.href= "[[@{/homepage}]]";
+       }
+    });
+    // 阻止form表单使用同步请求的方式提交
+    return false;
+  });
 });
 </script>
 </body>

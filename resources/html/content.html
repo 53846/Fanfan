@@ -9,155 +9,172 @@
   <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
   <link rel="stylesheet" th:href="@{/css/homepage.css}"/>
    <meta charset="utf-8">
+
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
   <!-- 背景颜色开始 -->
-<style>
-body {
-  background-color:   rgba(193, 131, 38, 0.152);
-}
-</style>
-   <!-- 背景颜色结束 -->
+  <style>
+    body {
+      background-color:   rgba(193, 131, 38, 0.152);
+    }
+  </style>
+  <!-- 背景颜色结束 -->
 
-<div class="layui-header  layui-bg-gray">
+  <div class="layui-header  layui-bg-gray">
 
-<!-- 头部搜素框开始 -->
-<div class="search-container">
-  <form class="search-box">
-    <input type="text" class="search-input" placeholder="输入搜索内容...">
-    <button type="submit" class="search-button">搜索</button>
-  </form>
-</div>
-<!-- 头部搜索框结束 -->
-<div class="layui-logo layui-bg-gray">
-  <img src="picture/home/饭饭之交.png" class="layui-nav-img">
-  饭饭之交
-</div>
-
-<ul class="layui-nav layui-layout-left layui-bg-gray">
-  <!-- 移动端显示 -->
-  <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
-    <i class="layui-icon layui-icon-spread-left"></i>
-  </li>
-  <!--
-  <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 1</a></li>
-  <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">nav 2</a></li>
-  <li class="layui-nav-item">
-    <a href="javascript:;">nav groups</a>
-    <dl class="layui-nav-child">
-      <dd><a href="javascript:;">menu 11</a></dd>
-      <dd><a href="javascript:;">menu 22</a></dd>
-      <dd><a href="javascript:;">menu 33</a></dd>
-    </dl>
-  </li>
-  -->
-</ul> 
-  
-
-
-<ul class="layui-nav layui-layout-right layui-bg-gray">
-  <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
-<!--        <div class="layui-btn-container">-->
-<!--          <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">-->
-<!--            <a th:href="@{login}"> 登录</a>    &lt;!&ndash;改为登录界面&ndash;&gt;-->
-<!--          </button>-->
-<!--        </div>-->
-  </li>
-  <li class="layui-nav-item layui-hide-xs">
-    <a href="javascript:;">
-      <a th:href="@{chat}"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 25px;height: 25px;">消息
-    </a>
-  </li>
-  <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
-    <a href="javascript:;">
-        <img src="picture/home/头像.png" class="layui-nav-img">
-        用户名
-    </a>    
-    <dl class="layui-nav-child">
-      <dd><a href="javascript:;"><img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a></dd>
-      <dd><a href="javascript:;"><img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">投稿</a></dd>
-      <dd><a href="javascript:;"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">消息</a></dd>
-      <dd><a th:href="@{login}"><img src="picture/home/登录.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
-    </dl>
-  </li>
-</ul>
-</div>
-
-<div class="layui-side layui-bg-gray">
-<div class="layui-side-scroll layui-bg-gray">
-  <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-  <ul class="layui-nav layui-nav-tree layui-bg-gray" lay-filter="test">
-    <li class="layui-nav-item layui-nav-itemed">
-      <a class="" href="javascript:;"><img src="picture/home/热点内容.png" class="layui-nav-img">热点内容</a>
-      <dl class="layui-nav-child">
-        <dd><a href="javascript:;"><img src="picture/home/推荐.png" class="layui-nav-img" style="width: 20px;height: 20px;">推荐</a></dd>
-        <dd><a href="javascript:;"><img src="picture/home/热门.png" class="layui-nav-img" style="width: 20px;height: 20px;">热门</a></dd>
-        <dd><a href="javascript:;"><img src="picture/home/附近.png" class="layui-nav-img" style="width: 20px;height: 20px;">附近</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item"><a href="javascript:;"><a href="./好友列表以及聊天.html"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>
-    <li class="layui-nav-item ">
-      <a href="javascript:;"><img src="picture/home/活动.png" class="layui-nav-img">活动</a>
-      <dl class="layui-nav-child">
-        <dd><a href="javascript:;"><img src="picture/home/个人征召.png" class="layui-nav-img" style="width: 20px;height: 20px;">个人征召</a></dd>
-        <dd><a href="javascript:;"><img src="picture/home/团建.png" class="layui-nav-img" style="width: 20px;height: 20px;">团建</a></dd>
-        <dd><a href="javascript:;"><img src="picture/home/官方活动.png" class="layui-nav-img" style="width: 20px;height: 20px;">官方活动</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;"><img src="picture/home/更多.png" class="layui-nav-img">更多</a>
-      <dl class="layui-nav-child">
-        <dd><a href="javascript:;">待添加1</a></dd>
-        <dd><a href="javascript:;">待添加2</a></dd>
-        <dd><a href="javascript:;">待添加2</a></dd>
-      </dl>
-    </li>
-    
-  </ul>
-</div>
-</div>
-  <div class="layui-body">
-    <!-- 内容主体区域 -->
-    <div class="layui-btn-container">
-      <br>
-      <!--下方应接地址使之能返回首页以及进入社区-->
-      <a th:href="@{homepage}" class="layui-icon layui-icon-left">返回首页</a><br>
-      <br><a href="/index.html" class="layui-btn layui-btn-warm layui-btn-radius" target="_blank">进入社区</a>
+    <!-- 头部搜素框开始 -->
+    <!-- 搜索框容器 -->
+    <div class="search-container">
+      <!-- 搜索输入框 -->
+      <input type="text" id="searchInput" class="search-input" placeholder="输入进行搜索">
+      <!-- 搜索按钮 -->
+      <button id="searchButton" class="search-button">搜索</button>
     </div>
-    <div style="padding: 15px;">
-      <blockquote class="layui-elem-quote layui-text">
-        饭饭之交 详情页布局内容主体区域
-      </blockquote>
-      <div class="layui-card layui-panel">
-        <div class="layui-card-header">
-          <!--以下用户动态后接库中用户所发动态-->
-          用户动态： 
-          <p> 我强烈推荐一家名叫"食之乐"的饭馆，它是我最喜欢的餐厅之一。</p>
-                  <p>这家饭馆提供了一系列令人垂涎欲滴的菜肴，从传统的本地美食到国际化的烹饪风格，满足了各种口味的需求。
-                饭馆内部装饰典雅，环境舒适宜人，让人感觉宾至如归。员工们非常友好和专业，总是笑容满面并提供高水准的服务。</p>
-                <p>无论是家庭聚餐、朋友聚会还是浪漫约会，这里都是一个理想的选择。餐馆还提供预订服务，确保你能享受到完美的用餐体验。
-                无论你是寻找美食的探险者还是追求舌尖上的满足，"食之乐"饭馆绝对是不容错过的好去处。</p>
-        </div>
-        <div class="layui-card-body">
-        <br><br><br><br><br><br><br><br><br>
-        <!--在html代码中写入类型为button类型按钮，并给一个id名为praise-->
-        <!--赞也需要接入库中，记录已赞数以及规定已赞者不可再赞-->
-        <i class="layui-icon layui-icon-praise" style="font-size: 30px; color: #ff1e1e;"></i> 
-        <input type="button" id="praise" value="赞(0)"><br><br>评论区：
-        <!--评论区也需要与库中相接并加载相应内容-->
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </div>
-      </div>
-      <br><br>
+
+    <!-- 相关内容显示区域 -->
+    <ul class="suggestions" id="suggestionsContainer"></ul>
+    <!-- 头部搜索框结束 -->
+
+    <div class="layui-logo layui-bg-gray">
+      <img src="picture/home/饭饭之交.png" class="layui-nav-img">
+      饭饭之交
+    </div>
+
+    <ul class="layui-nav layui-layout-right layui-bg-gray">
+      <li class="layui-nav-item layui-hide-xs">
+        <a th:href="postThread">
+          <img src="picture/home/投稿.png"class="layui-nav-img" style="width: 25px;height: 25px;">发帖
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+        <a href="javascript:;">
+          <img th:src="@{'/picture/' + ${session.user.userAvatar}}" class="layui-nav-img">
+          [[${session.user.NickName}]]
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a th:href="@{/userModify(userId=${session.user.userId})}"><img src="picture/home/个人中心.png"class="layui-nav-img" style="width: 25px;height: 25px;">个人中心</a></dd>
+          <!--          <dd><a href="javascript:;"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 25px;height: 25px;">消息</a></dd>-->
+          <dd><a th:href="@{/friend}"><img src="picture/home/好友.png"class="layui-nav-img" style="width: 25px;height: 25px;">好友</a></dd>
+          <!--        <li class="layui-nav-item"><a th:href="@{/friend}"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>-->
+          <!--          <dd><a th:href="@{/userModify(userId=${session.user.userId})}"><img src="picture/home/消息.png"class="layui-nav-img" style="width: 23px;height: 23px;">修改信息</a></dd>-->
+          <dd><a th:href="@{/logout}"><img src="picture/home/注销.png" class="layui-nav-img" style="width: 25px;height: 25px;">注销</a></dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-gray">
+    <div class="layui-side-scroll layui-bg-gray">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree layui-bg-gray" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;"><img src="picture/home/热点内容.png" class="layui-nav-img">热点内容</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;"><img src="picture/home/推荐.png" class="layui-nav-img" style="width: 20px;height: 20px;">推荐</a></dd>
+            <dd><a href="javascript:;"><img src="picture/home/热门.png" class="layui-nav-img" style="width: 20px;height: 20px;">热门</a></dd>
+            <dd><a href="javascript:;"><img src="picture/home/附近.png" class="layui-nav-img" style="width: 20px;height: 20px;">附近</a></dd>
+          </dl>
+        </li>
+        <!--        <li class="layui-nav-item"><a th:href="@{/friend}"><img src="picture/home/好友.png" class="layui-nav-img">好友</a></li>-->
+        <li class="layui-nav-item ">
+          <a href="javascript:;"><img src="picture/home/活动.png" class="layui-nav-img">活动</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;"><img src="picture/home/个人征召.png" class="layui-nav-img" style="width: 20px;height: 20px;">个人征召</a></dd>
+            <dd><a href="javascript:;"><img src="picture/home/团建.png" class="layui-nav-img" style="width: 20px;height: 20px;">团建</a></dd>
+            <dd><a href="javascript:;"><img src="picture/home/官方活动.png" class="layui-nav-img" style="width: 20px;height: 20px;">官方活动</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;"><img src="picture/home/更多.png" class="layui-nav-img">更多</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">待添加1</a></dd>
+            <dd><a href="javascript:;">待添加2</a></dd>
+            <dd><a href="javascript:;">待添加2</a></dd>
+          </dl>
+        </li>
+
+      </ul>
     </div>
   </div>
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-    底部固定区域
+
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 100px ; width: 80%;">
+      <div class="layui-btn-container">
+        <br>
+        <!--下方应接地址使之能返回首页以及进入社区-->
+        <a th:href="@{homepage}" class="layui-icon layui-icon-left">返回首页</a><br>
+        <br>
+      </div>
+      <div class="layui-card layui-panel">
+        <div class="layui-card-header">
+          <a href="javascript:;" layui-layout-right>
+            <img th:src="@{'/picture/' + ${session.threadDto.userAvatar}}" class="layui-nav-img"/>
+            [[${session.threadDto.userNickName}]]
+          </a>
+        </div>
+        <div class="layui-card-body" layui-layout-right>
+            <p class="homepage-title">[[${session.threadDto.threadTitle}]]</p>
+            <br>
+            <p>[[${session.threadDto.threadContent}]]</p>
+            <br>
+            <div class="image-container">
+                <!-- 使用Thymeleaf循环生成图片标签 -->
+                <div th:each="imageUrl : ${session.threadDto.imageUrl}">
+                    <img th:src="@{'/picture/' + ${imageUrl}}">
+                </div>
+            </div>
+          <br>
+          <div class="homepage-like-container">
+            <button id="likeButton" class="homepage-like-button" onclick="toggleLike()">点赞</button>
+            <p class="like-count">点赞数：<span id="likeCount">[[${session.threadDto.threadLike}]]</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">评论区</div>
+        <div class="layui-card-body" id="commentContent">
+          <!-- 评论内容将通过Ajax填充到这里 -->
+        </div>
+        <form class="layui-form" id="commentForm">
+          <div class="layui-form-item">
+            <textarea name="comment" placeholder="请输入评论内容" class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-form-item">
+            <button class="comment-button" >发表评论</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br><br>
   </div>
 </div>
 <script src="/cdn.staticfile.org/layui/2.8.0/layui.js"></script>
+<script>
+    layui.use('layer', function(){
+      var layer = layui.layer;
+
+      // 发起AJAX请求获取用户头像和名称
+      $.ajax({
+        url: '/api/user',
+        type: 'GET',
+        success: function(response) {
+          if (response.success) {
+            var user = response.user;
+            // 将头像和名称显示在页面上
+            $('#avatar').attr('src', user.avatar);
+            $('#username').text(user.username);
+          } else {
+            layer.msg('获取用户信息失败');
+          }
+        },
+        error: function() {
+          layer.msg('请求失败');
+        }
+      });
+    });
+  </script>
 <script>
 //JS
 layui.use(['element', 'layer', 'util'], function(){
@@ -186,15 +203,133 @@ layui.use(['element', 'layer', 'util'], function(){
 });
 </script>
 </body>
-<script type="text/javascript">
-    //在js代码块中声明一个变量number并赋值0
-    var number=0;
-    //通过id属性查找点赞按钮(praise)并绑定点击事件(click)
-    document.getElementById('praise').onclick=function(){
-        //将自增的value的值赋给按钮(praise)中的value属性
-        this.value="赞("+(++number)+")";
-    }
-</script>
+<script>
+    layui.use(['layer', 'jquery', 'form'], function(){
+      var layer = layui.layer;
+      var $ = layui.jquery;
+      var form = layui.form;
+
+      // 模拟用户是否已点赞
+      var isLiked = false;
+      // 模拟已赞人数
+      var likeCount = 0;
+
+      // 初始化点赞状态和已赞人数
+      updateLikeStatus();
+
+      // 更新点赞状态和已赞人数
+      function updateLikeStatus() {
+        $('#likeCount').text(likeCount);
+        var btnIcon = isLiked ? 'layui-icon-praise-fill' : 'layui-icon-praise';
+        $('#likeStatusBtn i').removeClass().addClass('layui-icon ' + btnIcon);
+      }
+
+      // 监听点赞按钮点击事件
+      form.on('submit(likeStatusBtn)', function(data){
+        if (isLiked) {
+          layer.msg('您已取消赞');
+          // 如果已赞，点击后取消赞
+          likeCount--;
+        } else {
+          layer.msg('点赞成功');
+          // 如果未赞，点击后点赞
+          likeCount++;
+        }
+        isLiked = !isLiked;
+        updateLikeStatus();
+
+        // 此处可添加Ajax请求，将点赞状态同步到后端数据库
+
+        return false;
+      });
+    });
+  </script>
+<script>
+    layui.use(['layer', 'jquery', 'form'], function(){
+      var layer = layui.layer;
+      var $ = layui.jquery;
+      var form = layui.form;
+
+      
+      // 发起AJAX请求获取用户动态数据
+      $.ajax({
+        url: '/api/user/dynamic',// 替换为实际的动态接口
+        type: 'GET',
+        success: function(response) {
+        // 将动态内容填充到dynamicContent元素中
+          if (response.success) {
+            var dynamic = response.dynamic;
+            var dynamicContainer = $('#dynamicContainer');
+            var dynamicCard = $('<div class="layui-card">');
+            var dynamicCardBody = $('<div class="layui-card-body">').text(dynamic.content);
+
+            // 如果动态中包含图片，添加显示图片的<img>标签
+            if (dynamic.image) {
+              var image = $('<img>').attr('src', dynamic.image);
+              dynamicCardBody.append(image);
+            }
+
+            dynamicCard.append(dynamicCardBody);
+            dynamicContainer.append(dynamicCard);
+          } else {
+            layer.msg('获取用户动态失败');
+          }
+        },
+        error: function() {
+          layer.msg('请求失败');
+        }
+      });
+
+      // 获取评论列表
+      function getComments() {
+        $.ajax({
+          url: '/api/comments', // 替换为实际的评论接口
+          type: 'GET',
+          success: function(response) {
+            // 将评论列表填充到commentContent元素中
+            $('#commentContent').html(response);
+          },
+          error: function() {
+            layer.msg('获取评论列表失败');
+          }
+        });
+      }
+
+      // 刷新评论列表
+      function refreshComments() {
+        getComments();
+      }
+
+      // 监听评论表单提交
+      form.on('submit(submitComment)', function(data){
+        var comment = data.field.comment;
+
+        // 发送评论请求
+        $.ajax({
+          url: '/api/comment', // 替换为实际的评论接口
+          type: 'POST',
+          data: {
+            comment: comment
+          },
+          success: function(response) {
+            // 清空评论框
+            $('#commentForm textarea[name="comment"]').val('');
+            // 刷新评论列表
+            refreshComments();
+            layer.msg('评论发表成功');
+          },
+          error: function() {
+            layer.msg('评论发表失败');
+          }
+        });
+
+        return false;
+      });
+
+      // 初始化页面
+      getComments();
+    });
+  </script>
 <script src="layui/layui.js"></script>
 <script src="js/homepage.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
