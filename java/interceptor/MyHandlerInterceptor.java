@@ -14,7 +14,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         try {
             UserDto user = (UserDto) session.getAttribute("user");
-            if (user != null && user.getUsername() != null) {
+            if (user != null && user.getUserName() != null) {
                 System.out.println("用户已登录，可以继续访问...");
                 return true;
             }
@@ -22,7 +22,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
             System.out.println("出现系统异常，异常信息如下:\n" + e.getLocalizedMessage());
         }
         System.out.println("用户还未登录，请先登录系统...");
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/indexLogin");
         return false;
     }
 
