@@ -39,4 +39,13 @@ public class UserService {
     public void updateUser(UserModifyDto userModifyDto) {
         userDao.updateUser(userModifyDto);
     }
+
+    public List<UserEntity> getByUserName(String userName) {
+        return userDao.getByUserName(userName);
+    }
+
+    public List<UserEntity> getByPhoneNum(String phoneNum) {
+        return userDao.getByPhoneNum(phoneNum);
+    }
+
 }
