@@ -1,18 +1,27 @@
 package com.example.demo.entity;
 
 public class UserEntity {
-    private Integer id;
+    private Integer userId;
     private String userName;
     private String password;
     private String phoneNum;
     private String nickName;
+    private String userAvatar;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
     public String getPhoneNum() {
