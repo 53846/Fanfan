@@ -1,60 +1,169 @@
+
 /*  搜索框开始  */
+/* 搜索框容器样式 */
 .search-container {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    max-width: 30%;
+    margin: 10px auto;
 }
-.search-box {
-    width: 30%;
-    height: 40px;
-    border-radius: 20px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    display: flex;
-}
+/* 搜索输入框样式  */
 .search-input {
-    flex-grow: 1;
-    border: none;
-    margin-right: 10px;
-    font-size: 18px;
+    flex: 10%;
+    padding: 10px;
+    font-size: 130%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
 }
-.search-button {
-    background-color: #2ba6df;
-    color: white;
+/* 搜索按钮样式 */
+      .search-button {
+    padding: 2.5%;
+    font-size: 120%;
+    background-color: #ccc;
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 18px;
+    border-radius: 10px;
     cursor: pointer;
+    margin-left: 2%;
+      }
+    .comment-button {
+  padding: 1%;
+  font-size: 80%;
+  background-color: #ccc;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 2%;
+  margin-bottom: 1%;
+    }
+/* 相关内容区域样式 */
+.suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding-left: 35%;
+    padding-right: 35%;
+    margin: 0%;
+}
+/* 相关内容项样式 */
+.suggestion {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+}
+/* 最后一个相关内容项去掉底部边框 */
+.suggestion:last-child {
+    border-bottom: none;
+}
+ /* 鼠标悬停在相关内容项时的样式 */
+.suggestion:hover {
+    background-color: #e9e9e9;
+}
+/* 隐藏相关内容区域的样式 */
+.hide {
+    display: none;
 }
 /*  搜索框结束  */
 
-/* 文本首行缩进开始 */
-.indented p {
-    text-indent: 2em; /* 设置缩进量，这里使用 2em 作为示例 */
-  }
-/* 文本首行缩进结束 */
 
-/* 点赞设计开始 */
-.like-button {
+
+/* 点赞评论设计开始 */
+.homepage-button-container {
+  display: flex;
+  align-items: center;
+}
+.homepage-like-container {
+  display: inline-block;
+  padding: 1%;
+  background-color: #ffffff;
+}
+.homepage-like-button {
     display: inline-block;
-    padding: 5px 20px;
-    font-size: 16px;
+    padding: 3% 20px;
+    font-size: 100%;
     background-color: #eaeaea;
     border: none;
     border-radius: 23px;
     cursor: pointer;
     transition: background-color 1s;
   }
-  .like-button:hover {
+.homepage-like-button:hover {
     background-color: #d5d5d5;
   }
-  .like-button.liked {
+.homepage-like-button.liked {
     background-color: #fb1d1d;
     color: #ffffff;
   }
-  .like-count {
+.homepage-like-count {
     margin-top: 10px;
     font-size: 14px;
     color: #777777;
   }
-  /* 点赞设计结束 */
+
+  /* 点赞评论设计结束 */
+
+
+
+
+  /*文本省略*/
+  .ellipsis {
+    max-width: 90%; /* 设置文字容器的最大宽度 */
+    overflow: hidden; /* 超出容器宽度的文字隐藏 */
+    white-space: nowrap; /* 文字不换行 */
+    text-overflow: ellipsis; /* 超出容器宽度的文字显示省略号 */
+  }
+   /*文本省略结束*/
+
+
+
+   /*主页图片美化开始*/
+   .image-container {
+    display: flex; /* 横向排列图片 */
+    justify-content: flex-start; /* 左对齐图片 */
+    gap: 10px; /* 图片之间的间距 */
+  }
+
+  .image-container img {
+    width: 200px; /* 图片的宽度 */
+    height: 150px; /* 图片的高度 */
+    border: 2px solid #ffffff; /* 边框样式 */
+    border-radius: 10px; /* 边框圆角 */
+    object-fit: cover; /* 图片适应容器大小，保持比例 */
+  }
+   /*主页图片美化结束*/
+   
+
+   /* 标题样式开始 */
+   .homepage-titile {
+    font-size: 130%;
+    color: rgb(0, 0, 0);
+  }
+   /* 标题样式结束 */
+
+
+
+   /* 右侧框架开始  */
+   .homepage-container {          
+    position: fixed;
+    top: 48%;
+    right: 1% ;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(111, 72, 72, 0.236);
+    padding: 1.7%;
+  }
+
+  .homepage-container ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .homepage-container li {
+    font-size: 120%;
+    color: #333;
+    text-align: center;
+    margin-bottom: 13%;
+  }
+  /* 右侧框架结束  */
