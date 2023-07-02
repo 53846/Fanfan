@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.FriendDao">
+
+    <select id="getFriendIdAndNameByUserId" resultType="com.example.demo.entity.FriendEntity">
+        SELECT user_id_2 as friendId,
+        user_nick_name_2 as friendName
+        FROM friend
+        <where>
+            user_id_1 = #{userId}
+        </where>
+    </select>
+
+    <select id="getFriendAvatarByFriendId" resultType="java.lang.String">
+        SELECT user_avatar as friendAvatar  FROM user
+        <where>
+            user_id = #{friendId}
+        </where>
+    </select>
+
+    <delete id="deleteFriendById" parameterType="Integer">
+        DELETE FROM friend
+        WHERE (user_id_1 = #{userId} AND user_id_2 = #{friendId})
+        OR (user_id_1 = #{friendId} AND user_id_2 = #{userId})
+    </delete>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserDao">
+
+    <select id="getByUserNameAndPassword" resultType="com.example.demo.entity.UserEntity">
+        SELECT user_id as userId,
+        user_name as userName,
+        password,
+        phone_num as phoneNum,
+        nick_name as nickName,
+        user_avatar as userAvatar
+        FROM user
+        <where>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName}
+            </if>
+            AND password = #{password}
+        </where>
+    </select>
+
+    <insert id="addUser" parameterType="com.example.demo.entity.UserEntity" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO user(user_name, phone_num, password, nick_name, user_avatar)
+        VALUES(#{userName}, #{phoneNum}, #{password}, #{nickName}, #{userAvatar})
+    </insert>
+
+    <select id="getByUserId" resultType="com.example.demo.entity.UserEntity">
+        SELECT user_id as userId,
+        user_name as userName,
+        password,
+        phone_num as phoneNum,
+        nick_name as nickName,
+        user_avatar as userAvatar
+        FROM user
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
+
+    <update id="updateUser" parameterType="com.example.demo.dto.UserModifyDto">
+        UPDATE user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName}
+            </if>
+            <if test="phoneNum != null">
+                ,phone_num = #{phoneNum}
+            </if>
+            <if test="password != null and password != ''">
+                ,password = #{password}
+            </if>
+            <if test="nickName != null">
+                ,nick_name = #{nickName}
+            </if>
+            <where>
+                user_id = #{userId}
+            </where>
+        </set>
+    </update>
+
+    <select id="getByUserName" resultType="com.example.demo.entity.UserEntity">
+        SELECT user_id as userId, user_name as userName FROM user
+        <where>
+            user_name = #{userName}
+        </where>
+    </select>
+
+    <select id="getByPhoneNum" resultType="com.example.demo.entity.UserEntity">
+        SELECT user_id as userId, user_name as userName FROM user
+        <where>
+            phone_num = #{phoneNum}
+        </where>
+    </select>
+
+</mapper>
