@@ -5,6 +5,15 @@ public class UserRegisterDto {
     private String password;
     private String phoneNum;
     private String nickName;
+    private String userAvatar;
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
 
     public String getUserName() {
         return userName;
