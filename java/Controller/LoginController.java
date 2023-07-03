@@ -32,6 +32,10 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("register")
+    public String register() {
+        return "register";
+    }
     /**
      * ajax异步请求后台接口
      *

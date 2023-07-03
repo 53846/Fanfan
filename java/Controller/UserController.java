@@ -79,7 +79,8 @@ public class UserController {
         UserDto user = (UserDto) session.getAttribute("user");
         userModifyDto.setUserId(user.getUserId());
         userService.updateUser(userModifyDto);
-        return "homepage";
+        request.getSession().removeAttribute("user");
+        return "redirect:login";
     }
 
 }
